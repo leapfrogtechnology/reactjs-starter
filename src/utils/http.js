@@ -12,10 +12,4 @@ const http = axios.create({
   },
 });
 
-const refreshTokenHttp = axios.create({
-  headers: {
-    'Content-Type': 'application/json',
-  },
-});
-
-export { http as default, refreshTokenHttp };
+export { http as default };
