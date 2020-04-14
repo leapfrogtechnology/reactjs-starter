@@ -10,7 +10,7 @@ const columns = [
   },
   {
     Header: 'Last name',
-    accessor: 'firstName',
+    accessor: 'lastName',
   },
 ];
 
