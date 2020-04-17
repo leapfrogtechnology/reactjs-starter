@@ -1,3 +1,3 @@
-import Home from './Home';
+import Header from '../common/layout/Header';
 
-export default Home;
+export default Header;
