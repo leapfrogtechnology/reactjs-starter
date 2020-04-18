@@ -1,13 +1,12 @@
 import React from 'react';
 
-import { logo } from 'assets/images';
+import Header from 'components/common/layout/Header';
+import EmployeeForm from 'components/home/employee/EmployeeForm';
 
-const Home = () => (
-  <div className="App">
-    <header className="App-header">
-      <img src={logo} className="App-logo" alt="logo" />
-    </header>
+const LandingPage = () => (
+  <div>
+    <Header />
+    <EmployeeForm />
   </div>
 );
-
-export default Home;
+export default LandingPage;
