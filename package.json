@@ -22,12 +22,6 @@
     "prettier": "^2.0.4",
     "source-map-explorer": "^2.4.2"
   },
-  "lint-staged": {
-    "*.{js,jsx,json,css,scss,md}": [
-      "prettier . --write",
-      "git add"
-    ]
-  },
   "scripts": {
     "analyze": "source-map-explorer 'build/static/js/*.js'",
     "start": "react-scripts start",
@@ -40,6 +34,12 @@
     "hooks": {
       "pre-commit": "lint-staged"
     }
+  },
+  "lint-staged": {
+    "*.{js,jsx,json,css,scss,md}": [
+      "prettier . --write",
+      "git add"
+    ]
   },
   "eslintConfig": {
     "extends": [
