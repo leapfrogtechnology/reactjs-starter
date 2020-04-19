@@ -2,7 +2,7 @@ import http from 'utils/http';
 
 import config from 'config';
 
-import * as tokenService from 'services/token';
+import * as tokenService from './token';
 
 /**
  * Send http request for login.
