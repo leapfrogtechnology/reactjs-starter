@@ -115,22 +115,31 @@ class EmployeeList extends Component {
     const { employees, loading } = this.state;
 
     return (
-      <div className="full-scope-card__content">
-        <Table
-          showPagination={false}
-          minRows={3}
-          columns={columns}
-          data={employees}
-          loading={loading}
-          getTrProps={(state, rowInfo) => {
-            return {
-              onClick: e => {
-                //TODO: click implementation details
-              },
-            };
-          }}
-        />
-      </div>
+      <div className="container">
+        <div className="full-scope-card">
+          <div className="full-scope-card__header">
+            <div className="table-header">
+              <h3>{"Employee List"}</h3>
+            </div>
+          </div>
+          <div className="full-scope-card__content">
+            <Table
+              showPagination={false}
+              minRows={3}
+              columns={columns}
+              data={employees}
+              loading={loading}
+              getTrProps={(state, rowInfo) => {
+                return {
+                  onClick: e => {
+                    //TODO: click implementation details
+                  },
+                };
+              }}
+            />
+          </div>
+        </div>
+      </div>   
     );
   }
 }
