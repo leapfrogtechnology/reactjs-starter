@@ -5,6 +5,8 @@
   "dependencies": {
     "axios": "^0.19.2",
     "classnames": "^2.2.6",
+    "formik": "^2.1.4",
+    "http-status": "^1.4.2",
     "lint-staged": "^10.1.4",
     "node-sass": "^4.13.1",
     "pinterpolate": "^0.2.2",
@@ -15,7 +17,9 @@
     "react-scripts": "^3.4.1",
     "redux": "^4.0.5",
     "redux-persist": "^6.0.0",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "universal-cookie": "^4.0.3",
+    "yup": "^0.28.3"
   },
   "devDependencies": {
     "husky": "^4.2.5",

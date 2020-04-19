@@ -1,4 +1,5 @@
 import thunk from 'redux-thunk';
+import { persistStore } from 'redux-persist';
 import { compose, createStore, applyMiddleware } from 'redux';
 
 import * as env from 'constants/env';
@@ -15,4 +16,7 @@ const store = createStore(
   )
 );
 
+const persistor = persistStore(store);
+
 export default store;
+export { persistor };
