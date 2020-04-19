@@ -31,21 +31,21 @@ export function setAccessToken(accessToken) {
 }
 
 /**
- * Set refresh token to storage.
+ * Get refresh token from storage.
  *
  * @returns {string}
  */
-export function setRefreshToken() {
+export function getRefreshToken() {
   return storage.get(REFRESH_TOKEN);
 }
 
 /**
- * Get refresh token from storage.
+ * Set refresh token to storage.
  *
  * @param {string} refreshToken
  * @returns {string}
  */
-export function getRefreshToken(refreshToken) {
+export function setRefreshToken(refreshToken) {
   return storage.set(REFRESH_TOKEN, refreshToken);
 }
 
