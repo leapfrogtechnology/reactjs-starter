@@ -13,6 +13,8 @@ import employeeSchema from '../../../schemas/EmployeeSchema';
 
 import { generateReactSelectOptions } from '../../../utils/reactSelect';
 import { TYPE_OPTIONS } from '../../../constants/options';
+import * as employeeService from 'services/employeeService';
+import { handleError } from 'utils/errorHandler';
 
 const genderSelectOptions = generateReactSelectOptions(TYPE_OPTIONS);
 
@@ -20,8 +22,8 @@ class EmployeeForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      employee: { name: '', description: '', status: true },
-      //id: props
+      employee: {},
+      loading: false
     };
   }
 
@@ -31,9 +33,44 @@ class EmployeeForm extends React.Component {
     }
   }
 
-  handleSubmit = async employee => {};
+  setLoading = loading => {
+    this.setState({loading});
+  };
 
-  handleUpdate = async employee => {};
+  handleSubmit = async employee => {
+    try{
+      this.setLoading(true);
+      await employeeService.save({
+        firstName: employee.firstName,
+        lastName: employee.lastName,
+        dob: employee.dob,
+        designation: employee.designation,
+        address: employee.address
+      });
+      this.setLoading(false);
+    }catch(err){
+      this.setLoading(false);
+      handleError(err);
+    }
+  };
+
+  handleUpdate = async employee => {
+    try{
+      this.setLoading(true);
+      let result = await employeeService.save({
+        firstName: employee.firstName, 
+        lastName: employee.lastName, 
+        designation: employee.designation, 
+        dob : employee.dob, 
+        address : employee.address
+      });
+      this.setLoading(false);
+    }catch(err){
+      this.setLoading(false);
+      handleError(err);
+    }
+
+  };
 
   handleDelete = e => {
     e.preventDefault();
@@ -45,9 +82,18 @@ class EmployeeForm extends React.Component {
       confirmButtonText: 'Yes, delete it!',
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-
       preConfirm: async () => {},
     });
+  };
+
+
+  handleChange = e => {
+  
+  };
+
+
+  handleBlur = e => {
+    
   };
 
   redirectToDesignation() {
@@ -57,11 +103,13 @@ class EmployeeForm extends React.Component {
   render() {
     return (
       <Formik
-        enableReinitialize
-        initialValues={this.state.employee}
-        validationSchema={employeeSchema}
-        onSubmit={!this.state.id ? this.handleSubmit : this.handleUpdate}
-        render={({ values, handleSubmit, errors, touched, handleChange, handleBlur, isSubmitting }) => (
+      initialValues={this.state.employee}
+      onSubmit={this.handleSubmit}
+      validationSchema={employeeSchema}
+      >
+      {props => {
+        const {values,touched,errors,dirty,isSubmitting,handleChange,handleBlur,handleSubmit,handleReset} = props;
+        return (
           <main>
             <div className="container">
               <div className="full-scope-card">
@@ -70,85 +118,82 @@ class EmployeeForm extends React.Component {
                     <h3>Employee Form</h3>
                   </div>
                 </div>
-                <form>
+                <form onSubmit={handleSubmit}>
                   <div className="full-scope-card__content">
                     <div className="form-wrap">
                       <div className="form-wrap__row form-wrap__row--no-margin">
-                        <div className="form-wrap__col col-sm-6">
-                          <div className="form-group">
+                        <div className="form-wrap__col col-sm-12">
+                          <div className="form-group"></div>
                             <FormGroup
-                              name="name"
-                              label="Employee Name"
+                              name="firstName"
+                              label="First Name"
                               isMandatory={true}
-                              value={values.name}
-                              error={touched.name && errors.name}
+                              value={values.firstName}
+                              error={touched.firstName && errors.firstName}
                               handleBlur={handleBlur}
                               handleChange={handleChange}
-                              placeholder="Employee Name"
+                              placeholder="First Name"
                             />
                             <FormGroup
-                              name="description"
-                              label="Sample Description"
+                              name="lastName"
+                              label="Last Name"
                               isMandatory={false}
-                              value={values.description}
-                              error={touched.description && errors.description}
+                              value={values.lastName}
+                              error={touched.lastName && errors.lastName}
                               handleBlur={handleBlur}
                               handleChange={handleChange}
-                              placeholder="Sample Description"
+                              placeholder="Last Name"
                             />
                             <FormGroup
-                              name="username"
-                              label="Employee Email"
+                              name="designation"
+                              label="Designation"
                               isMandatory={true}
-                              value={values.username}
+                              value={values.designation}
                               handleBlur={handleBlur}
-                              error={touched.username && errors.username}
+                              error={touched.designation && errors.designation}
                               handleChange={handleChange}
-                              placeholder="Employee Email"
+                              placeholder="Designation"
                             />
 
-                            <RadioButton
-                              name="gender"
-                              label="Option"
+                            <FormGroup
+                              name="address"
+                              label="Address"
                               isMandatory={true}
-                              selectedValue={values.gender}
-                              selectOptions={genderSelectOptions}
-                              error={touched.gender && errors.gender}
+                              value={values.address}
+                              handleBlur={handleBlur}
+                              error={touched.address && errors.address}
                               handleChange={handleChange}
-                            />
+                              placeholder="Address"
+                            /> 
 
                             <DateSelector
-                              name="dateofBirth"
+                              name="dob"
                               label="Date Of Birth"
                               placeholderText="Pick a birth date"
                               isMandatory={true}
-                              value={values.dateofBirth}
-                              error={touched.dateofBirth && errors.dateofBirth}
+                              value={values.dob}
+                              error={touched.dob && errors.dob}
                               handleChange={handleChange}
                             />
 
                             <button
-                              type="button"
-                              disabled={isSubmitting}
+                              type="submit"
+                              disabled={!dirty || isSubmitting}
                               className="btn btn--primary f-left card-button mr-10"
-                              onClick={handleSubmit}
                             >
                               {isSubmitting ? <Loading /> : !this.state.id ? 'Create' : 'Update'}
                             </button>
-                            <button type="button" className="btn btn--danger mr-10 f-left" onClick={this.handleDelete}>
-                              Delete
-                            </button>
+                            </div>
                           </div>
                         </div>
                       </div>
-                    </div>
-                  </div>
                 </form>
               </div>
             </div>
           </main>
-        )}
-      ></Formik>
+        );
+      }}
+    </Formik>
     );
   }
 }

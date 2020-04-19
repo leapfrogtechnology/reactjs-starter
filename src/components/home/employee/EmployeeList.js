@@ -7,6 +7,7 @@ import history from 'utils/history';
 import * as routes from 'constants/routes';
 import { interpolate } from 'utils/string';
 import { handleError } from 'utils/errorHandler';
+import * as employeeService from 'services/employeeService';
 
 const columns = [
   {
@@ -16,35 +17,26 @@ const columns = [
     Cell: props => <span>{props.index + 1}</span>,
   },
   {
-    Header: 'Status',
-    accessor: 'status',
-    Cell: props => <span>{props.original.status}</span>,
+    Header: 'FirstName',
+    accessor: 'firstName'
   },
   {
-    Header: 'Project',
-    accessor: 'project',
+    Header: 'LastName',
+    accessor: 'lastName',
   },
   {
-    Header: 'Period',
-    accessor: 'period',
+    Header: 'Designation',
+    accessor: 'designation',
   },
   {
-    Header: 'Deadline',
-    accessor: 'deadline',
+    Header: 'Date of birth',
+    accessor: 'dob',
     Cell: props => <span>{moment(props.value).format('LL')}</span>,
   },
   {
-    Header: 'Appraiser',
-    accessor: 'appraiser',
-  },
-  {
-    Header: 'Co-Appraiser',
-    accessor: 'coAppraiser',
-  },
-  {
-    Header: 'Mediator',
-    accessor: 'mediator',
-  },
+    Header: 'Address',
+    accessor: 'address',
+  }
 ];
 
 /**
@@ -71,39 +63,11 @@ class EmployeeList extends Component {
     });
   };
 
-  fetchEmployees = params => {
+  fetchEmployees = async () => {
     try {
-      //TODO:  Needs to replace from an API fetch.
-      const employees = [
-        {
-          status: 'self evaluation',
-          project: 'delphi',
-          period: 'Dec 2019 to july 2020',
-          deadline: '30 july,2020',
-          appraiser: 'Kailash Raj Bijayananda',
-          coAppraiser: 'Mamita Shrestha',
-          mediator: 'Kailash Raj Bijayananda',
-        },
-        {
-          status: 'self evaluation',
-          project: 'delphi',
-          period: 'Dec 2019 to july 2020',
-          deadline: '30 july,2020',
-          appraiser: 'Kailash Raj Bijayananda',
-          coAppraiser: 'Mamita Shrestha',
-          mediator: 'Kailash Raj Bijayananda',
-        },
-        {
-          status: 'self evaluation',
-          project: 'delphi',
-          period: 'Dec 2019 to july 2020',
-          deadline: '30 july,2020',
-          appraiser: 'Kailash Raj Bijayananda',
-          coAppraiser: 'Mamita Shrestha',
-          mediator: 'Kailash Raj Bijayananda',
-        },
-      ];
-
+      this.setLoading(true);
+      
+      const employees = await employeeService.fetchEmployees();
       this.setState({ employees: employees, loading: false });
     } catch (err) {
       this.setLoading(false);
@@ -124,10 +88,10 @@ class EmployeeList extends Component {
           </div>
           <div className="full-scope-card__content">
             <Table
+              data={employees}
               showPagination={false}
               minRows={3}
               columns={columns}
-              data={employees}
               loading={loading}
               getTrProps={(state, rowInfo) => {
                 return {

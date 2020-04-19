@@ -25,7 +25,7 @@ const Table = ({
 }) => {
   minRows = minRows || 3;
 
-  if (!loading && data.length === 0) {
+  if (!loading && data && data.length === 0) {
     return <Empty />;
   }
 
