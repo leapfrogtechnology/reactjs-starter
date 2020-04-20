@@ -8,6 +8,7 @@ import Loading from 'components/common/loading/Loading';
 import history from 'utils/history';
 
 import config from 'config';
+import * as linkUtil from '../../../utils/link'
 
 const Table = ({
   data,
@@ -59,9 +60,8 @@ const Table = ({
             let link = getLink(rowInfo);
 
             if (e.ctrlKey || e.metaKey) {
-              let newWindow = window.open(window.location.origin + config.basename.slice(0, -1) + link, '_blank');
+              let newWindow = linkUtil.openWindow(link);
               newWindow.opener = null;
-
               return;
             }
 
