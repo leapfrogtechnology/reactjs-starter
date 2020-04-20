@@ -1,6 +1,6 @@
 import React from 'react';
 
-import InputLabel from './InputLabel';
+//import InputLabel from './InputLabel';
 import FileUpload from './FileUpload';
 
 class ImageInput extends React.Component {

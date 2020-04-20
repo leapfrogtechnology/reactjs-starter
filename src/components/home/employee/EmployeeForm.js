@@ -3,33 +3,31 @@ import { Formik } from 'formik';
 import Alert from 'components/common/alert';
 
 import history from '../../../utils/history';
+import * as toast from '../../../utils/toast';
 
-import { FormGroup, DateSelector, RadioButton } from '../../common/form';
+import { FormGroup, DateSelector } from '../../common/form';
 import { EMPLOYEE_ROUTE } from '../../../constants/routes';
 
 import Loading from '../../common/loading/Loading';
 
 import employeeSchema from '../../../schemas/EmployeeSchema';
 
-import { generateReactSelectOptions } from '../../../utils/reactSelect';
-import { TYPE_OPTIONS } from '../../../constants/options';
 import * as employeeService from 'services/employeeService';
 import { handleError } from 'utils/errorHandler';
-
-const genderSelectOptions = generateReactSelectOptions(TYPE_OPTIONS);
 
 class EmployeeForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       employee: {},
-      loading: false
+      loading: false,
+      id : 1
     };
   }
 
   componentDidMount() {
     if (this.state.id) {
-      // this.fetchById();
+      this.fetchById();
     }
   }
 
@@ -40,36 +38,16 @@ class EmployeeForm extends React.Component {
   handleSubmit = async employee => {
     try{
       this.setLoading(true);
-      await employeeService.save({
-        firstName: employee.firstName,
-        lastName: employee.lastName,
-        dob: employee.dob,
-        designation: employee.designation,
-        address: employee.address
-      });
+      if(!this.state.id){
+        await employeeService.save(employee);
+      }else{
+        await employeeService.update(employee);
+      }
       this.setLoading(false);
     }catch(err){
       this.setLoading(false);
       handleError(err);
     }
-  };
-
-  handleUpdate = async employee => {
-    try{
-      this.setLoading(true);
-      let result = await employeeService.save({
-        firstName: employee.firstName, 
-        lastName: employee.lastName, 
-        designation: employee.designation, 
-        dob : employee.dob, 
-        address : employee.address
-      });
-      this.setLoading(false);
-    }catch(err){
-      this.setLoading(false);
-      handleError(err);
-    }
-
   };
 
   handleDelete = e => {
@@ -86,29 +64,35 @@ class EmployeeForm extends React.Component {
     });
   };
 
-
-  handleChange = e => {
-  
+  fetchById = async () => {
+    try {
+      const data  = await employeeService.fetchById(this.state.id);
+      this.setState({
+        employee: data
+      });
+    } catch (error) {
+      toast.error({
+        title: 'Error',
+        message: error.response.data.error.message
+      });
+    }
   };
 
 
-  handleBlur = e => {
-    
-  };
-
-  redirectToDesignation() {
+  redirectToEmployee() {
     history.push(EMPLOYEE_ROUTE);
   }
 
   render() {
     return (
       <Formik
+      enableReinitialize
       initialValues={this.state.employee}
       onSubmit={this.handleSubmit}
       validationSchema={employeeSchema}
       >
       {props => {
-        const {values,touched,errors,dirty,isSubmitting,handleChange,handleBlur,handleSubmit,handleReset} = props;
+        const {values,touched,errors,dirty,isSubmitting,handleChange,handleBlur,handleSubmit} = props;
         return (
           <main>
             <div className="container">

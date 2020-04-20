@@ -3,9 +3,9 @@ import React, { Component } from 'react';
 
 import Table from 'components/common/table';
 
-import history from 'utils/history';
-import * as routes from 'constants/routes';
-import { interpolate } from 'utils/string';
+//import history from 'utils/history';
+//import * as routes from 'constants/routes';
+//import { interpolate } from 'utils/string';
 import { handleError } from 'utils/errorHandler';
 import * as employeeService from 'services/employeeService';
 
@@ -66,9 +66,9 @@ class EmployeeList extends Component {
   fetchEmployees = async () => {
     try {
       this.setLoading(true);
-      
       const employees = await employeeService.fetchEmployees();
-      this.setState({ employees: employees, loading: false });
+      this.setState({ employees: employees.data, loading: false });
+      this.setLoading(false);
     } catch (err) {
       this.setLoading(false);
       handleError(err);

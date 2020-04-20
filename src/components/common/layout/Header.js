@@ -18,7 +18,7 @@ const Header = props => {
     }
   };
 
-  const { user } = props;
+  //const { user } = props;
 
   return (
     <header>
@@ -35,10 +35,10 @@ const Header = props => {
             </div>
             <ul className={classnames('header-left__nav left', { show: isMenuShown })}>
               <li className="header-left__item">
-                <a href="#">Menu 1</a>
+                <a href="/menu1">Menu 1</a>
               </li>
               <li className="header-left__item">
-                <a href="#">Menu 2</a>
+                <a href="/menu2">Menu 2</a>
               </li>
             </ul>
           </div>
@@ -47,7 +47,7 @@ const Header = props => {
               <div className="user-card d-flex align-items-center">
                 <img
                   alt="display"
-                  src={'https://images.lftechnology.com/avatar/455.png'}
+                  src={logoFull}
                   className="left nametag nametag--lg profile-photo"
                 />
                 <span className="text-truncate">Anish Manandhar</span>
@@ -56,12 +56,12 @@ const Header = props => {
 
               <div className={classnames('dropmenu', { show: isUserMenuShown })}>
                 <div className="dropmenu__node">
-                  <a href="#" title={'Anish Manandhar'} className="d-flex align-items-center">
+                  <a href="/profile" title={'Anish Manandhar'} className="d-flex align-items-center">
                     View Profile
                   </a>
                 </div>
                 <div className="dropmenu__node">
-                  <a href="#" title="Logout">
+                  <a href="/logout" title="Logout">
                     Log Out
                   </a>
                 </div>
