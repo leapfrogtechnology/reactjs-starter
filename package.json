@@ -41,7 +41,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "server": "json-server -p 8080 db.json",
+    "dev": "concurrently \"yarn start\" \"yarn run server\""
   },
   "husky": {
     "hooks": {
@@ -65,5 +67,8 @@
       "last 1 safari version"
     ]
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "concurrently": "^5.1.0",
+    "json-server": "^0.16.1"
+  }
 }

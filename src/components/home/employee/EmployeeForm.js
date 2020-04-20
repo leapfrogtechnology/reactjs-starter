@@ -21,7 +21,7 @@ class EmployeeForm extends React.Component {
     this.state = {
       employee: {},
       loading: false,
-      id : 1
+      id : props.employeeId
     };
   }
 
