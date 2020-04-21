@@ -14,6 +14,7 @@ const config = {
     users: {
       self: '/users/self',
     },
+    employee: '/employees',
   },
 };
 

@@ -1,0 +1,151 @@
+.popup-modal {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  @include m(open) {
+    overflow: hidden;
+  }
+
+  @include e(backdrop) {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1000;
+    background-color: $black;
+    opacity: 0.5;
+  }
+
+  @include e(wrapper) {
+    z-index: 1050;
+    overflow-y: auto;
+  }
+
+  @include e(dialog) {
+    position: absolute;
+    right: 50%;
+    -ms-transform: translate(50%, 0);
+    -webkit-transform: translate(50%, 0);
+    transform: translate(50%, 0);
+    z-index: 1050;
+    width: 700px;
+    background-color: $white;
+    border-radius: 4px;
+    margin: 40px 0;
+
+    @include m(small) {
+      width: 580px;
+    }
+  }
+
+  @include e(header) {
+    padding: 25px;
+    position: relative;
+    border-bottom: 1px solid $border-light-gray;
+  }
+
+  @include e(title) {
+    padding: 6px 10px;
+  }
+
+  @include e(main-heading) {
+    font-size: $medium-font-size;
+    color: $text-color-dark;
+    font-weight: $weight-semi-bold;
+  }
+
+  @include e(sub-heading) {
+    font-size: $small-font-size;
+    color: $text-color-dark;
+    font-weight: $weight-semi-bold;
+    margin-top: 6px;
+  }
+
+  @include m(close) {
+    width: 48px;
+    height: 48px;
+    background-color: $white;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 50%;
+    position: absolute;
+    top: -24px;
+    right: -24px;
+    color: $red;
+    font-size: $xlg-font-size;
+
+    svg {
+      fill: $red;
+    }
+  }
+
+  @include e(tab-menu) {
+    background-color: $dark-gray-background;
+
+    li {
+      float: left;
+      margin: 0 15px;
+      border-bottom: 4px solid $dark-gray-background;
+
+      &:first-child {
+        margin-left: 25px;
+      }
+
+      a {
+        display: block;
+        padding: 12px;
+        font-size: $default-font-size;
+        color: $text-color-light;
+        font-weight: $weight-bold;
+      }
+
+      &:hover,
+      &.active {
+        border-color: $primary-color;
+
+        a {
+          color: $primary-color;
+        }
+      }
+    }
+  }
+
+  @include e(footer) {
+    padding: 15px 25px;
+    border-top: 1px solid $border-light-gray;
+    text-align: right;
+
+    .btn {
+      margin: 0;
+    }
+
+    .btn + .btn {
+      margin-left: 16px;
+    }
+  }
+}
+
+.section {
+  padding: 15px 25px;
+  border-bottom: 1px solid $icon-gray;
+
+  @include e(heading) {
+    font-size: $medium-font-size;
+    color: $text-color-black;
+    font-weight: $weight-bold;
+  }
+}
+
+.section-list {
+  li {
+    border-bottom: 1px solid $border-gray;
+    padding: 20px 24px;
+
+    &:last-child {
+      border-bottom: 0;
+    }
+  }
+}

@@ -1,0 +1,48 @@
+//
+// Button groups
+// --------------------------------------------------
+
+// Make the div behave like a button
+
+.btn-group {
+  button {
+    border: 1px solid $icon-gray;
+    padding: $padding ($padding * 2);
+    cursor: pointer;
+    float: left;
+    color: $text-color-grey;
+    font-size: 14px;
+    height: auto;
+
+    &:first-child {
+      border-radius: $border-radius 0 0 $border-radius;
+    }
+
+    &:last-child {
+      border-radius: 0 $border-radius $border-radius 0;
+    }
+
+    &:not(:last-child) {
+      border-right: none;
+    }
+
+    &:after {
+      content: '';
+      clear: both;
+      display: table;
+    }
+
+    &:hover,
+    &:active,
+    &.active {
+      background: $blue;
+      color: $white;
+      border-color: $blue;
+    }
+
+    &:active,
+    &.active {
+      box-shadow: $button-pressed;
+    }
+  }
+}

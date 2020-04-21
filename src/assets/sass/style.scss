@@ -1,23 +1,18 @@
-.App {
-  text-align: center;
-}
+// ==========================================================================
+// Style
+// Import all manifest partials from other folder to this file.
+//
+// ---------------------------------------------------------------------------
+//
+// Scalable and Modular Architecture for CSS (SMACSS)
+// With SMACSS, we divide our styles into fives categories: base, libs, modules, states, and utilities
+// ==========================================================================
 
-.App-logo {
-  height: 10vmin;
-  pointer-events: none;
-}
+@import 'utilities/manifest';
 
-.App-header {
-  background-color: #ffffff;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: black;
-}
-
-.App-link {
-  color: #61dafb;
-}
+/* Sass Compiled Css Code Start */
+@import 'base/manifest';
+@import 'modules/manifest';
+@import 'libs/manifest';
+@import 'states/manifest';
+@import 'shame';
