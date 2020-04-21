@@ -1,0 +1,105 @@
+.nav {
+  @include m(top) {
+    background: $white;
+    border-width: 1px 0 1px 0;
+    border-style: solid;
+    border-color: $border-gray;
+
+    @include m(right) {
+      .btn {
+        margin-top: 12px;
+
+        span {
+          margin-top: 2px;
+        }
+      }
+    }
+  }
+  @include m(bot) {
+    background: $dark-gray-background;
+  }
+}
+
+.tabs {
+  @include e(item) {
+    float: left;
+    margin-right: 10px;
+    @include m(notification-available) {
+      a {
+        position: relative;
+        &:before {
+          content: '';
+          position: absolute;
+          width: 8px;
+          height: 8px;
+          background-color: $orange;
+          border-radius: 50%;
+          top: 3px;
+          right: 3px;
+          animation: color-flash 3s ease infinite;
+        }
+      }
+    }
+    a {
+      display: block;
+      padding: 12px 15px;
+      font-size: $small-font-size;
+      border-style: solid;
+      color: $text-color-light;
+      border-color: $white;
+      border-width: 1px 1px 0 1px;
+      border-radius: 6px 6px 0 0;
+      transition: border 0.2s ease;
+      &.active {
+        border-color: $border-gray;
+        color: $primary-color;
+      }
+      &:hover {
+        border-color: $border-gray;
+        color: $primary-color;
+      }
+    }
+  }
+  margin-top: 12px;
+  @include mqmax(lg) {
+    width: max-content;
+  }
+}
+
+.prim-nav {
+  @include e(item) {
+    float: left;
+    margin: 0 15px;
+    border: none;
+    border-bottom: 4px solid $dark-gray-background;
+    a {
+      display: block;
+      padding: 8px 2px;
+      font-size: $default-font-size;
+      color: $text-color-light;
+      font-weight: $weight-bold;
+    }
+
+    @include m(active) {
+      border-color: $primary-color;
+      a {
+        color: $primary-color;
+
+        svg {
+          fill: $primary-color;
+        }
+      }
+    }
+
+    &:hover {
+      border-color: $primary-color;
+      a {
+        color: $primary-color;
+
+        svg {
+          fill: $primary-color;
+        }
+      }
+    }
+  }
+}

@@ -11,6 +11,4 @@ import pinterpolate from 'pinterpolate';
  * @param {object} params
  * @returns {string}
  */
-export function interpolate(str, params) {
-  return pinterpolate(str, params);
-}
+export const interpolate = (str, params) => pinterpolate(str, params);

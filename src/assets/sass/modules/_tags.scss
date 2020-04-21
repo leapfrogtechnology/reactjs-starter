@@ -1,0 +1,30 @@
+.tag {
+  display: inline-block;
+  min-width: 205px;
+  width: auto;
+  padding: 5px;
+  background-color: $tag-bg-color;
+  border-radius: 60px;
+
+  span {
+    display: inline-block;
+    margin-top: 1px;
+  }
+
+  button {
+    margin-right: 6px;
+    margin-top: 2px;
+  }
+
+  @include m(small) {
+    min-width: 125px;
+    padding: 5px 15px;
+    font-weight: $weight-bold;
+    color: $text-color-light;
+    font-size: 12px;
+
+    button {
+      margin-right: 0;
+    }
+  }
+}

@@ -1,0 +1,61 @@
+table {
+  background-color: $table-bg;
+
+  th {
+    text-align: left;
+  }
+}
+
+.table {
+  width: 100%;
+  max-width: 100%;
+  color: $text-color-black;
+
+  td,
+  th {
+    padding: $table-cell-padding;
+
+    &:first-child {
+      padding-left: 16px;
+    }
+
+    &:last-child {
+      padding-right: 16px;
+    }
+  }
+
+  thead th {
+    border-bottom: 2px solid $border-gray;
+    padding-top: 14px;
+    padding-bottom: 14px;
+    color: $black;
+  }
+
+  tbody tr {
+    border-bottom: 1px solid $border-gray;
+  }
+
+  a {
+    color: inherit;
+  }
+}
+
+.table-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  &:after {
+    display: none;
+  }
+}
+
+.empty-screen {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: center;
+  align-content: center;
+  position: absolute;
+  text-align: center;
+  height: calc(100% - 72px);
+}

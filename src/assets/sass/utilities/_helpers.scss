@@ -1,0 +1,181 @@
+// ==========================================================================
+// Helpers
+// Helpers classes such as object classes used for floating an element left and right,
+// text alignments etc. are included here.
+// Simple helper classes are generally referred using class selectors and their css properties
+// will have an !important property attached to it, so that a helper class cannot be overwritten.
+// Placeholders can also be included in the helper partial for these purposes.
+// ==========================================================================
+
+//Screen reader text:
+.srt {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+%clearfix-none {
+  display: inline;
+}
+
+%pseudos {
+  display: block;
+  content: '';
+  position: absolute;
+}
+
+%shadow {
+  -webkit-box-shadow: 0px 5px 10px 0px transparentize($black, 0.8);
+  -moz-box-shadow: 0px 5px 10px 0px transparentize($black, 0.8);
+  box-shadow: 0px 5px 10px 0px transparentize($black, 0.8);
+}
+
+%ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.left {
+  float: left !important;
+}
+
+.right {
+  float: right !important;
+}
+
+%no-border {
+  border: none;
+  outline: none;
+}
+
+.main-text {
+  font-weight: $weight-bold;
+  font-size: $default-font-size;
+}
+
+.medium-text {
+  font-size: $small-font-size;
+  color: $text-color-dark;
+}
+
+.muted-text {
+  font-size: $xsmall-font-size;
+  color: $text-color-light;
+  font-weight: $weight-regular;
+}
+
+.width--half {
+  width: 50% !important;
+}
+
+.padding--tb {
+  padding: 10px 0;
+}
+
+.padding--rl {
+  padding: 0 10px;
+}
+
+.padding--t {
+  padding-top: 10px;
+}
+
+.padding--b {
+  padding-top: 10px;
+}
+
+.text--grey {
+  color: $text-color-grey;
+}
+
+.scrollable-content {
+  height: 365px;
+  overflow-y: auto;
+}
+
+.text--center {
+  text-align: center;
+}
+
+.text--right {
+  text-align: right;
+}
+
+.flex-1 {
+  flex: 1;
+}
+.flex-2 {
+  flex: 2;
+}
+.dark--text {
+  color: $text-color !important;
+}
+.grey--text {
+  color: $text-color-grey !important;
+}
+.blue--text {
+  color: $blue !important;
+}
+.icon--grey {
+  color: $icon-gray !important;
+}
+.font-weight-bold {
+  font-weight: bold;
+}
+.required {
+  color: $red;
+}
+
+.flex-fix {
+  &:after,
+  &::before {
+    display: none;
+  }
+}
+
+.mw-150 {
+  min-width: 150px;
+}
+
+.mw-200 {
+  min-width: 200px;
+}
+
+.mw-300 {
+  min-width: 300px;
+}
+
+.p-absolute {
+  position: absolute;
+}
+
+.m-10 {
+  margin: 10px;
+}
+
+.flex-shrink-0 {
+  flex-shrink: 0;
+}
+
+.text-truncate {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: pre;
+}
+
+.scrollable {
+  overflow: auto;
+}
+.bordered-1x-bottom {
+  border-bottom: 1px solid $border-gray;
+}
+
+.red {
+  color: red;
+}
