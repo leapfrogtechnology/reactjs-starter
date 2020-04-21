@@ -3,6 +3,8 @@ import _get from 'lodash/get';
 import config from 'config';
 import * as toast from './toast';
 
+import * as env from 'constants/env';
+
 const GENERIC_ERROR = 'Oops! Something went wrong';
 
 /**
@@ -12,7 +14,7 @@ const GENERIC_ERROR = 'Oops! Something went wrong';
  * @param {{title, message}} options
  */
 export function handleError(event, options = {}) {
-  if (config.env !== 'production') {
+  if (config.env !== env.PRODUCTION) {
     console.log(event);
   }
 

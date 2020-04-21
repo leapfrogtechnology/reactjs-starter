@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-import Header from 'components/common/layout/Header';
-import EmployeeForm from 'components/home/employee/EmployeeForm';
-
-const LandingPage = () => (
-  <div>
-    <Header />
-    <EmployeeForm />
-  </div>
-);
-export default LandingPage;
+class Home extends Component {
+  render() {
+    return (
+      <div className="App">
+        <header className="App-header">
+          <img src={logo} className="App-logo" alt="logo" />
+        </header>
+      </div>
+    );
+  }
+}
+export default Home;
