@@ -5,6 +5,7 @@ import * as tokenService from '../services/token';
 
 import http from '../utils/http';
 
+const RETRY_COUNT_LIMIT = 3;
 const TOKEN_EXPIRE = 'Token expired';
 const AUTHORIZATION_HEADER = 'Authorization';
 const SESSION_EXPIRE = 'Refresh token expired';
@@ -52,6 +53,7 @@ export async function responseInterceptor(error) {
 
   if (code === HttpStatus.UNAUTHORIZED && message === TOKEN_EXPIRE && !originalRequest.__isRetryRequest) {
     originalRequest._retry = true;
+    originalRequest.retryCount = isNaN(originalRequest.retryCount) ? 1 : originalRequest.retryCount++;
 
     const refreshToken = tokenService.getRefreshToken();
     const { data } = await authService.refresh(refreshToken);
@@ -63,7 +65,11 @@ export async function responseInterceptor(error) {
     return http.request(originalRequest);
   }
 
-  if ((code === HttpStatus.UNAUTHORIZED && message === SESSION_EXPIRE) || message === REFRESH_TOKEN_DOESNT_EXIST) {
+  if (
+    (code === HttpStatus.UNAUTHORIZED && message === SESSION_EXPIRE) ||
+    message === REFRESH_TOKEN_DOESNT_EXIST ||
+    originalRequest.retryCount > RETRY_COUNT_LIMIT
+  ) {
     await authService.logout();
   }
 
