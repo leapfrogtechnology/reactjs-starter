@@ -10,7 +10,7 @@ import config from '../config';
  */
 export async function fetchSelf() {
   const url = config.endpoints.users.self;
-  const data = await http.get(url);
+  const { data } = await http.get(url);
 
   return data;
 }
