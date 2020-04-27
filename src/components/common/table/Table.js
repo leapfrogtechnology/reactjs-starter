@@ -7,7 +7,6 @@ import Loading from 'components/common/loading/Loading';
 
 import history from 'utils/history';
 
-import config from 'config';
 import * as linkUtil from '../../../utils/link'
 
 const Table = ({

@@ -52,17 +52,19 @@ class EmployeeForm extends React.Component {
     }
   };
 
-  handleDelete = e => {
+  handleCancel = e => {
     e.preventDefault();
     Alert.fire({
       icon: 'warning',
-      title: 'Remove this Data',
+      title: 'Cancel this Data',
       text: "You won't be able to revert this!",
       showCancelButton: true,
-      confirmButtonText: 'Yes, delete it!',
+      confirmButtonText: 'Yes, Cancel it!',
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      preConfirm: async () => {},
+      preConfirm: async () => {
+        history.push(routes.EMPLOYEE_ROUTE);
+      },
     });
   };
 
@@ -162,13 +164,17 @@ class EmployeeForm extends React.Component {
                               handleChange={handleChange}
                             />
 
-                            <button
-                              type="submit"
-                              disabled={!dirty || isSubmitting}
-                              className="btn btn--primary f-left card-button mr-10"
-                            >
-                              {isSubmitting ? <Loading /> : !this.state.id ? 'Create' : 'Update'}
-                            </button>
+                              <button
+                                type="submit"
+                                disabled={!dirty || isSubmitting}
+                                className="btn btn--primary f-left card-button mr-10"
+                              >
+                                {isSubmitting ? <Loading /> : !this.state.id ? 'Create' : 'Update'}
+                              </button>
+
+                              <button type="button" className="btn btn--danger mr-10 f-left" onClick={this.handleCancel}>
+                                Cancel
+                              </button>
                             </div>
                           </div>
                         </div>

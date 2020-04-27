@@ -11,8 +11,7 @@ import EmployeeList from './employee/EmployeeList';
  * @param {*} props 
  */
 const HomeRouter = (props) => {
-  const { user } = props;
-  
+
   return (
     <Switch>
       <Route exact path={routes.EMPLOYEE_ROUTE} component={EmployeeList} />
