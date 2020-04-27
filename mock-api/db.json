@@ -1,0 +1,20 @@
+{
+  "employees": [
+    {
+      "id": 1,
+      "firstName": "Anish",
+      "lastName": "Manandhar",
+      "address": "Soalteemode",
+      "designation": "SA",
+      "dob": "2020-04-04"
+    },
+    {
+      "id": 2,
+      "firstName": "Pratish",
+      "lastName": "Shrestha",
+      "address": "Bhaktapur",
+      "designation": "SSE",
+      "dob": "2020-04-04"
+    }
+  ]
+}
