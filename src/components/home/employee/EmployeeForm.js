@@ -22,7 +22,7 @@ class EmployeeForm extends React.Component {
     this.state = {
       employee: {},
       loading: false,
-      id : props.employeeId
+      id : props.match.params.id
     };
   }
 

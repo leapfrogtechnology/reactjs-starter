@@ -7,6 +7,7 @@ import history from 'utils/history';
 import * as routes from 'constants/routes';
 import { handleError } from 'utils/errorHandler';
 import * as employeeService from 'services/employeeService';
+import { interpolate } from 'utils/string';
 
 const columns = [
   {
@@ -96,7 +97,7 @@ class EmployeeList extends Component {
                 return {
                   onClick: e => {
                     //TODO: click implementation details
-                    history.push(routes.EMPLOYEE_ADD_ROUTE);
+                    history.push(interpolate(routes.EMPLOYEE_EDIT_ROUTE, {id : rowInfo.original.id}));
                   },
                 };
               }}

@@ -16,6 +16,7 @@ const HomeRouter = (props) => {
     <Switch>
       <Route exact path={routes.EMPLOYEE_ROUTE} component={EmployeeList} />
       <Route exact path={routes.EMPLOYEE_ADD_ROUTE} component={EmployeeForm} />
+      <Route exact path={routes.EMPLOYEE_EDIT_ROUTE} component={EmployeeForm} />
       <Route path={routes.HOME} component={EmployeeList} />
       <Redirect to={routes.HOME} />
     </Switch>
