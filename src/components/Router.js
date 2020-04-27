@@ -15,7 +15,6 @@ const Router = () => (
   <BrowserRouter history={history}>
     <Switch>
       <Route exact path={routes.LOGIN} component={Login} />
-
       <PrivateRoute path={routes.HOME} component={Home} />
     </Switch>
   </BrowserRouter>

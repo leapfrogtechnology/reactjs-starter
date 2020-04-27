@@ -6,6 +6,7 @@ import history from '../../../utils/history';
 import * as toast from '../../../utils/toast';
 
 import { FormGroup, DateSelector } from '../../common/form';
+import * as routes from 'constants/routes';
 import { EMPLOYEE_ROUTE } from '../../../constants/routes';
 
 import Loading from '../../common/loading/Loading';
@@ -44,6 +45,7 @@ class EmployeeForm extends React.Component {
         await employeeService.update(employee);
       }
       this.setLoading(false);
+      history.push(routes.EMPLOYEE_ROUTE);
     }catch(err){
       this.setLoading(false);
       handleError(err);

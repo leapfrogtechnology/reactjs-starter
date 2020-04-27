@@ -3,9 +3,8 @@ import React, { Component } from 'react';
 
 import Table from 'components/common/table';
 
-//import history from 'utils/history';
-//import * as routes from 'constants/routes';
-//import { interpolate } from 'utils/string';
+import history from 'utils/history';
+import * as routes from 'constants/routes';
 import { handleError } from 'utils/errorHandler';
 import * as employeeService from 'services/employeeService';
 
@@ -90,13 +89,14 @@ class EmployeeList extends Component {
             <Table
               data={employees}
               showPagination={false}
-              minRows={3}
+              minRows={employees.length} 
               columns={columns}
               loading={loading}
               getTrProps={(state, rowInfo) => {
                 return {
                   onClick: e => {
                     //TODO: click implementation details
+                    history.push(routes.EMPLOYEE_ADD_ROUTE);
                   },
                 };
               }}
