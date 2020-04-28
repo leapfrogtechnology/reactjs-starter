@@ -1,30 +1,22 @@
+import classnames from 'classnames';
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { FiChevronDown, FiMenu } from 'react-icons/fi';
 
 import { logoFull } from 'assets/images';
 
-import classnames from 'classnames';
+import * as routes from 'constants/routes';
 
-import { FiChevronDown, FiMenu } from 'react-icons/fi';
+import { withAuthState } from 'components/hoc/auth';
 
-const Header = props => {
-  const [isUserMenuShown, setIsUserMenuShown] = useState(true);
+const Header = ({ loggedInUser, logout }) => {
   const [isMenuShown, setIsMenuShown] = useState(false);
-
-  const toggleMenu = param => {
-    if (param === 'user') {
-      setIsUserMenuShown(!isUserMenuShown);
-    } else {
-      setIsMenuShown(!isMenuShown);
-    }
-  };
-
-  //const { user } = props;
 
   return (
     <header>
       <div className="header--top d-flex flex-fix align-items-center">
         <div className="container flex-1 flex-fix d-flex justify-content-between align-items-center">
-          <div className="toggle-menu d-md-none" onClick={() => toggleMenu()}>
+          <div className="toggle-menu d-md-none">
             <FiMenu size="24" />
           </div>
           <div className="header-left">
@@ -33,35 +25,29 @@ const Header = props => {
                 <img src={logoFull} alt="Leapfrog Technology" />
               </a>
             </div>
-            <ul className={classnames('header-left__nav left', { show: isMenuShown })}>
+            <ul className={classnames('header-left__nav left')}>
               <li className="header-left__item">
-                <a href="/menu1">Menu 1</a>
-              </li>
-              <li className="header-left__item">
-                <a href="/menu2">Menu 2</a>
+                <Link to={routes.EMPLOYEES} href="/menu1">
+                  Employees
+                </Link>
               </li>
             </ul>
           </div>
           <ul className="header-right">
             <li className="header-right__item dropdown-cover d-flex align-items-center">
               <div className="user-card d-flex align-items-center">
-                <img
-                  alt="display"
-                  src={logoFull}
-                  className="left nametag nametag--lg profile-photo"
+                <img alt="display" src={logoFull} className="left nametag nametag--lg profile-photo" />
+                <span className="text-truncate">{loggedInUser.first_name}</span>
+                <FiChevronDown
+                  className="icon--grey ml-10 flex-shrink-0"
+                  size="18px"
+                  onClick={() => setIsMenuShown(!isMenuShown)}
                 />
-                <span className="text-truncate">Anish Manandhar</span>
-                <FiChevronDown className="icon--grey ml-10 flex-shrink-0" size="18px" />
               </div>
 
-              <div className={classnames('dropmenu', { show: isUserMenuShown })}>
+              <div className={classnames('dropmenu', { show: isMenuShown })}>
                 <div className="dropmenu__node">
-                  <a href="/profile" title={'Anish Manandhar'} className="d-flex align-items-center">
-                    View Profile
-                  </a>
-                </div>
-                <div className="dropmenu__node">
-                  <a href="/logout" title="Logout">
+                  <a href="#" title="Logout" onClick={logout}>
                     Log Out
                   </a>
                 </div>
@@ -74,4 +60,4 @@ const Header = props => {
   );
 };
 
-export default Header;
+export default withAuthState(Header);

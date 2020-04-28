@@ -52,6 +52,7 @@ function withAuthState(WrappedComponent) {
 
     logout = () => {
       authService.logout(tokenService.getRefreshToken());
+      history.push(routes.LOGIN);
     };
 
     render() {

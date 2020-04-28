@@ -53,6 +53,5 @@ export function setRefreshToken(refreshToken) {
  * Clear tokens.
  */
 export function clear() {
-  storage.remove(ACCESS_TOKEN);
-  storage.remove(REFRESH_TOKEN);
+  storage.clear();
 }

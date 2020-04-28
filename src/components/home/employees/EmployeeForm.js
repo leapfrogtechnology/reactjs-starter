@@ -22,7 +22,7 @@ class EmployeeForm extends React.Component {
     this.state = {
       employee: {},
       loading: false,
-      id : props.match.params.id
+      id: props.match.params.id,
     };
   }
 
@@ -33,20 +33,20 @@ class EmployeeForm extends React.Component {
   }
 
   setLoading = loading => {
-    this.setState({loading});
+    this.setState({ loading });
   };
 
   handleSubmit = async employee => {
-    try{
+    try {
       this.setLoading(true);
-      if(!this.state.id){
+      if (!this.state.id) {
         await employeeService.save(employee);
-      }else{
+      } else {
         await employeeService.update(employee);
       }
       this.setLoading(false);
       history.push(routes.EMPLOYEE_ROUTE);
-    }catch(err){
+    } catch (err) {
       this.setLoading(false);
       handleError(err);
     }
@@ -70,18 +70,17 @@ class EmployeeForm extends React.Component {
 
   fetchById = async () => {
     try {
-      const data  = await employeeService.fetchById(this.state.id);
+      const data = await employeeService.fetchById(this.state.id);
       this.setState({
-        employee: data
+        employee: data,
       });
     } catch (error) {
       toast.error({
         title: 'Error',
-        message: error.response.data.error.message
+        message: error.response.data.error.message,
       });
     }
   };
-
 
   redirectToEmployee() {
     history.push(EMPLOYEE_ROUTE);
@@ -90,28 +89,28 @@ class EmployeeForm extends React.Component {
   render() {
     return (
       <Formik
-      enableReinitialize
-      initialValues={this.state.employee}
-      onSubmit={this.handleSubmit}
-      validationSchema={employeeSchema}
+        enableReinitialize
+        initialValues={this.state.employee}
+        onSubmit={this.handleSubmit}
+        validationSchema={employeeSchema}
       >
-      {props => {
-        const {values,touched,errors,dirty,isSubmitting,handleChange,handleBlur,handleSubmit} = props;
-        return (
-          <main>
-            <div className="container">
-              <div className="full-scope-card">
-                <div className="full-scope-card__header">
-                  <div className="table-header">
-                    <h3>Employee Form</h3>
+        {props => {
+          const { values, touched, errors, dirty, isSubmitting, handleChange, handleBlur, handleSubmit } = props;
+          return (
+            <main>
+              <div className="container">
+                <div className="full-scope-card">
+                  <div className="full-scope-card__header">
+                    <div className="table-header">
+                      <h3>Employee Form</h3>
+                    </div>
                   </div>
-                </div>
-                <form onSubmit={handleSubmit}>
-                  <div className="full-scope-card__content">
-                    <div className="form-wrap">
-                      <div className="form-wrap__row form-wrap__row--no-margin">
-                        <div className="form-wrap__col col-sm-12">
-                          <div className="form-group"></div>
+                  <form onSubmit={handleSubmit}>
+                    <div className="full-scope-card__content">
+                      <div className="form-wrap">
+                        <div className="form-wrap__row form-wrap__row--no-margin">
+                          <div className="form-wrap__col col-sm-12">
+                            <div className="form-group"></div>
                             <FormGroup
                               name="firstName"
                               label="First Name"
@@ -152,7 +151,7 @@ class EmployeeForm extends React.Component {
                               error={touched.address && errors.address}
                               handleChange={handleChange}
                               placeholder="Address"
-                            /> 
+                            />
 
                             <DateSelector
                               name="dob"
@@ -164,28 +163,28 @@ class EmployeeForm extends React.Component {
                               handleChange={handleChange}
                             />
 
-                              <button
-                                type="submit"
-                                disabled={!dirty || isSubmitting}
-                                className="btn btn--primary f-left card-button mr-10"
-                              >
-                                {isSubmitting ? <Loading /> : !this.state.id ? 'Create' : 'Update'}
-                              </button>
+                            <button
+                              type="submit"
+                              disabled={!dirty || isSubmitting}
+                              className="btn btn--primary f-left card-button mr-10"
+                            >
+                              {isSubmitting ? <Loading /> : !this.state.id ? 'Create' : 'Update'}
+                            </button>
 
-                              <button type="button" className="btn btn--danger mr-10 f-left" onClick={this.handleCancel}>
-                                Cancel
-                              </button>
-                            </div>
+                            <button type="button" className="btn btn--danger mr-10 f-left" onClick={this.handleCancel}>
+                              Cancel
+                            </button>
                           </div>
                         </div>
                       </div>
-                </form>
+                    </div>
+                  </form>
+                </div>
               </div>
-            </div>
-          </main>
-        );
-      }}
-    </Formik>
+            </main>
+          );
+        }}
+      </Formik>
     );
   }
 }

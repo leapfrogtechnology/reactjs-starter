@@ -1,7 +1,34 @@
-// Use a Toast Library
+import 'izitoast/dist/css/iziToast.css';
 
-export function success({ title, message }) {}
+import iziToast from 'izitoast';
 
-export function error({ title, message }) {}
+iziToast.settings({
+  timeout: 6000,
+  resetOnHover: true,
+  progressBar: false,
+  transitionIn: 'fadeInUp',
+  transitionOut: 'fadeOutDown',
+  position: 'bottomCenter',
+  displayMode: 'replace',
+});
 
-export function warning({ title, message }) {}
+export function success({ title, message }) {
+  iziToast.success({
+    title,
+    message,
+  });
+}
+
+export function error({ title, message }) {
+  iziToast.error({
+    title,
+    message,
+  });
+}
+
+export function warning({ title = '', message }) {
+  iziToast.warning({
+    title,
+    message,
+  });
+}

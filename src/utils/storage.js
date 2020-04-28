@@ -1,28 +1,27 @@
-import Cookies from 'universal-cookie';
-
-const cookies = new Cookies();
-
 /**
- * Get cookie.
+ * Get value from storage for given key.
  *
- * @param {string} key
- * @returns {string}
+ * @param  {string}  key
+ * @return {string}
  */
 export function get(key) {
-  return cookies.get(key);
+  const value = localStorage.getItem(key);
+
+  if (!value) {
+    return null;
+  }
+
+  return JSON.parse(value);
 }
 
 /**
- * Set cookie.
+ * Set key value pair in storage.
  *
  * @param {string} key
  * @param {string} value
- * @retunrs {string}
  */
 export function set(key, value) {
-  cookies.set(key, value, {
-    path: '/',
-  });
+  localStorage.setItem(key, JSON.stringify(value));
 }
 
 /**
@@ -31,5 +30,14 @@ export function set(key, value) {
  * @param {string} key
  */
 export function remove(key) {
-  cookies.remove(key);
+  localStorage.removeItem(key);
+}
+
+/**
+ * Clear storage.
+ *
+ * @return {string}
+ */
+export function clear() {
+  return localStorage.clear();
 }

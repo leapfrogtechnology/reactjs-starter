@@ -14,7 +14,6 @@ const columns = [
     Header: 'SN.',
     maxWidth: 100,
     Cell: props => {
-      console.log(props);
       return <span>{props.row.index + 1}</span>;
     },
   },

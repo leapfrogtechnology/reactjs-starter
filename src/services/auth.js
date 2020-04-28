@@ -26,10 +26,6 @@ export async function login({ email, password }) {
  * @param {string} refreshToken
  */
 export async function logout(refreshToken) {
-  const url = config.endpoints.auth.logout;
-
-  await http.get(url);
-
   tokenService.clear();
 }
 
