@@ -1,13 +1,14 @@
 import moment from 'moment';
+import { Link } from 'react-router-dom';
 import React, { Component } from 'react';
 
-import Table from 'components/common/table';
-
-import history from 'utils/history';
 import * as routes from 'constants/routes';
+
 import { handleError } from 'utils/errorHandler';
-import * as employeeService from 'services/employeeService';
-import { interpolate } from 'utils/string';
+
+import * as employee from 'services/employee';
+
+import Table from 'components/common/table';
 
 const columns = [
   {
@@ -67,7 +68,7 @@ class EmployeeList extends Component {
   fetchEmployees = async () => {
     try {
       this.setLoading(true);
-      const employees = await employeeService.fetchEmployees();
+      const employees = await employee.fetchEmployees();
 
       this.setState({ employees: employees.data });
       this.setLoading(false);
@@ -88,6 +89,7 @@ class EmployeeList extends Component {
               <h3>{'Employee List'}</h3>
             </div>
           </div>
+          <Link to={routes.EMPLOYEES_ADD}>Add</Link>
           <div className="full-scope-card__content">
             <Table columns={columns} data={employees} />
           </div>

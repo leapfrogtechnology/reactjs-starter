@@ -4,14 +4,17 @@ import { Switch, Route } from 'react-router-dom';
 
 import * as routes from 'constants/routes';
 
+import EmployeeAdd from './add';
 import EmployeeList from './list';
 
-const HomeRouter = () => {
+const EmployeeRouter = () => {
   return (
     <Switch>
-      <Route path={routes.EMPLOYEES} component={EmployeeList} />
+      <Route exact path={routes.EMPLOYEES} component={EmployeeList} />
+
+      {/* <Route path={routes.EMPLOYEES_ADD} component={EmployeeAdd} /> */}
     </Switch>
   );
 };
 
-export default HomeRouter;
+export default EmployeeRouter;

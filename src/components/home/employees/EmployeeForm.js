@@ -13,7 +13,7 @@ import Loading from '../../common/loading/Loading';
 
 import employeeSchema from '../../../schemas/EmployeeSchema';
 
-import * as employeeService from 'services/employeeService';
+import * as employeeService from 'services/employee';
 import { handleError } from 'utils/errorHandler';
 
 class EmployeeForm extends React.Component {
