@@ -4,7 +4,7 @@ import { Switch, Route } from 'react-router-dom';
 
 import * as routes from 'constants/routes';
 
-import EmployeeAdd from './add';
+// import EmployeeAdd from './add';
 import EmployeeList from './list';
 
 const EmployeeRouter = () => {
