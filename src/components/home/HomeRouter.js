@@ -3,22 +3,15 @@ import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 
 import * as routes from 'constants/routes';
-import EmployeeForm from './employee/EmployeeForm';
-import EmployeeList from './employee/EmployeeList';
 
-/**
- * 
- * @param {*} props 
- */
-const HomeRouter = (props) => {
+import Employees from './employees';
 
+const HomeRouter = () => {
   return (
     <Switch>
-      <Route exact path={routes.EMPLOYEE_ROUTE} component={EmployeeList} />
-      <Route exact path={routes.EMPLOYEE_ADD_ROUTE} component={EmployeeForm} />
-      <Route exact path={routes.EMPLOYEE_EDIT_ROUTE} component={EmployeeForm} />
-      <Route path={routes.HOME} component={EmployeeList} />
-      <Redirect to={routes.HOME} />
+      <Route exact path={routes.HOME} component={() => <Redirect to={routes.EMPLOYEES} />} />
+
+      <Route path={routes.EMPLOYEES} component={Employees} />
     </Switch>
   );
 };

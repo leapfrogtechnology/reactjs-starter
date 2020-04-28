@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 
-import Header from 'components/common/layout/Header';
 import HomeRouter from './HomeRouter';
+import Header from 'components/common/layout/Header';
 
 class Home extends Component {
   render() {
     return (
       <div className="App">
-        <Header/>
+        <Header />
         <HomeRouter />
       </div>
     );

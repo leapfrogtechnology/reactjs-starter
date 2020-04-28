@@ -1,79 +1,76 @@
-import React from 'react';
-import ReactTable from 'react-table';
-import 'react-table/react-table.css';
+import React, { useMemo } from 'react';
+import { useTable, useFlexLayout } from 'react-table';
 
-import Empty from 'components/common/empty/Empty';
-import Loading from 'components/common/loading/Loading';
+const Table = ({ columns, data }) => {
+  const getStyles = (props, align = 'left') => [
+    props,
+    {
+      style: {
+        justifyContent: align === 'right' ? 'flex-end' : 'flex-start',
+        alignItems: 'flex-start',
+        display: 'flex',
+      },
+    },
+  ];
 
-import history from 'utils/history';
+  const headerProps = (props, { column }) => getStyles(props, column.align);
 
-import * as linkUtil from '../../../utils/link'
+  const cellProps = (props, { cell }) => getStyles(props, cell.column.align);
 
-const Table = ({
-  data,
-  columns,
-  loading,
-  minRows,
-  showPagination,
-  getTdProps,
-  getTheadThProps,
-  sortable,
-  getTrProps,
-  defaultSorted,
-  style,
-  getLink
-}) => {
-  minRows = minRows || 3;
+  const defaultColumn = useMemo(
+    () => ({
+      // When using the useFlexLayout:
+      minWidth: 30, // minWidth is only used as a limit for resizing
+      width: 150, // width is used for both the flex-basis and flex-grow
+      maxWidth: 200, // maxWidth is only used as a limit for resizing
+    }),
+    []
+  );
 
-  if (!loading && data && data.length === 0) {
-    return <Empty />;
-  }
+  const memoizedColumns = useMemo(() => columns, [columns]);
+
+  const memoizedData = useMemo(() => data, [data]);
+
+  const { getTableProps, headerGroups, rows, prepareRow } = useTable(
+    {
+      columns: memoizedColumns,
+      data: memoizedData,
+      defaultColumn,
+    },
+    useFlexLayout
+  );
 
   return (
-    <ReactTable
-      data={data}
-      noDataText=""
-      className="lf"
-      columns={columns}
-      loading={loading}
-      minRows={minRows}
-      pageSize={minRows}
-      sortable={sortable}
-      getTheadThProps={getTheadThProps}
-      getTdProps={getTdProps}
-      showPagination={showPagination}
-      defaultSorted={defaultSorted}
-      loadingText={<Loading />}
-      style={style}
-      getTrProps={(state, rowInfo) => {
-        if (getTrProps) {
-          return getTrProps(state, rowInfo);
-        }
-
-        if (!getLink) {
-          return {};
-        }
-
-        return {
-          onClick: e => {
-            let link = getLink(rowInfo);
-
-            if (e.ctrlKey || e.metaKey) {
-              let newWindow = linkUtil.openWindow(link);
-              newWindow.opener = null;
-              return;
-            }
-
-            history.push(link);
-          }
-        };
-      }}
-    />
+    <div className="card card--elevated card--scrollable">
+      <div {...getTableProps()} className="lf-table">
+        {headerGroups.map(headerGroup => (
+          <div {...headerGroup.getHeaderGroupProps()} className="lf-table__head-row">
+            {headerGroup.headers.map(column => (
+              <div {...column.getHeaderProps(headerProps)} className="lf-table__col lf-table__col--head">
+                {column.render('Header')}
+              </div>
+            ))}
+          </div>
+        ))}
+        <div className="lf-table__body">
+          {rows.map(row => {
+            prepareRow(row);
+            return (
+              <div {...row.getRowProps()} className="lf-table__row">
+                {row.cells.map(cell => {
+                  return (
+                    <div {...cell.getCellProps(cellProps)} className="lf-table__col">
+                      {cell.render('Cell')}
+                    </div>
+                  );
+                })}
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </div>
   );
-};
-
-Table.defaultProps = {
-  sortable: true
 };
 
 export default Table;

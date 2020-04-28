@@ -2,10 +2,10 @@
   "employees": [
     {
       "id": 1,
-      "firstName": "Anish",
-      "lastName": "Manandhar",
-      "address": "Soalteemode",
-      "designation": "SA",
+      "firstName": "Pratish",
+      "lastName": "Shrestha",
+      "address": "Kathmandu",
+      "designation": "SSE",
       "dob": "2020-04-04"
     },
     {

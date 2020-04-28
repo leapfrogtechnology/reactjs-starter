@@ -1,5 +1,7 @@
 export const HOME = '/';
+
 export const LOGIN = '/login';
-export const EMPLOYEE_ROUTE = '/employees';
-export const EMPLOYEE_ADD_ROUTE = '/employees/add';
-export const EMPLOYEE_EDIT_ROUTE = '/employees/edit/:id';
+
+export const EMPLOYEES = '/employees';
+export const EMPLOYEES_ADD = '/employees/add';
+export const EMPLOYEES_EDIT = '/employees/edit/:id';

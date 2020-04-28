@@ -12,13 +12,15 @@ import { interpolate } from 'utils/string';
 const columns = [
   {
     Header: 'SN.',
-    accessor: 'sn',
     maxWidth: 100,
-    Cell: props => <span>{props.index + 1}</span>,
+    Cell: props => {
+      console.log(props);
+      return <span>{props.row.index + 1}</span>;
+    },
   },
   {
     Header: 'FirstName',
-    accessor: 'firstName'
+    accessor: 'firstName',
   },
   {
     Header: 'LastName',
@@ -36,7 +38,7 @@ const columns = [
   {
     Header: 'Address',
     accessor: 'address',
-  }
+  },
 ];
 
 /**
@@ -67,7 +69,8 @@ class EmployeeList extends Component {
     try {
       this.setLoading(true);
       const employees = await employeeService.fetchEmployees();
-      this.setState({ employees: employees.data, loading: false });
+
+      this.setState({ employees: employees.data });
       this.setLoading(false);
     } catch (err) {
       this.setLoading(false);
@@ -83,28 +86,14 @@ class EmployeeList extends Component {
         <div className="full-scope-card">
           <div className="full-scope-card__header">
             <div className="table-header">
-              <h3>{"Employee List"}</h3>
+              <h3>{'Employee List'}</h3>
             </div>
           </div>
           <div className="full-scope-card__content">
-            <Table
-              data={employees}
-              showPagination={false}
-              minRows={employees.length} 
-              columns={columns}
-              loading={loading}
-              getTrProps={(state, rowInfo) => {
-                return {
-                  onClick: e => {
-                    //TODO: click implementation details
-                    history.push(interpolate(routes.EMPLOYEE_EDIT_ROUTE, {id : rowInfo.original.id}));
-                  },
-                };
-              }}
-            />
+            <Table columns={columns} data={employees} />
           </div>
         </div>
-      </div>   
+      </div>
     );
   }
 }
