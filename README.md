@@ -13,6 +13,7 @@ Create a `.env.local` file from `.env.example`. <br>
 In the project directory, you can run:
 
 ### `yarn dev`
+
 Runs the app in the development mode with a mock server.<br>
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 Mock server will run at [http://localhost:8080](http://localhost:8080).
