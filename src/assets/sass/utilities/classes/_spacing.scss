@@ -1,0 +1,59 @@
+@function breakpoint-min($name, $breakpoints: $grid-breakpoints) {
+  $min: map-get($breakpoints, $name);
+  @return if($min != 0, $min, null);
+}
+
+@function breakpoint-infix($name, $breakpoints: $grid-breakpoints) {
+  @return if(breakpoint-min($name, $breakpoints) == null, '', '-#{$name}');
+}
+
+@each $breakpoint in map-keys($grid-breakpoints) {
+  @include mq($breakpoint) {
+    $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
+
+    @each $prop, $abbrev in (margin: m, padding: p) {
+      @each $size, $length in $spacing {
+        .#{$abbrev}-#{$size}#{$infix} {
+          #{$prop}: $length !important;
+        }
+        .#{$abbrev}t-#{$size}#{$infix},
+        .#{$abbrev}y-#{$size}#{$infix} {
+          #{$prop}-top: $length !important;
+        }
+        .#{$abbrev}r-#{$size}#{$infix},
+        .#{$abbrev}x-#{$size}#{$infix} {
+          #{$prop}-right: $length !important;
+        }
+        .#{$abbrev}b-#{$size}#{$infix},
+        .#{$abbrev}y-#{$size}#{$infix} {
+          #{$prop}-bottom: $length !important;
+        }
+        .#{$abbrev}l-#{$size}#{$infix},
+        .#{$abbrev}x-#{$size}#{$infix} {
+          #{$prop}-left: $length !important;
+        }
+      }
+    }
+
+    // Some special margin utils
+    .m-auto#{$infix} {
+      margin: auto !important;
+    }
+    .mt-auto#{$infix},
+    .my-auto#{$infix} {
+      margin-top: auto !important;
+    }
+    .mr-auto#{$infix},
+    .mx-auto#{$infix} {
+      margin-right: auto !important;
+    }
+    .mb-auto#{$infix},
+    .my-auto#{$infix} {
+      margin-bottom: auto !important;
+    }
+    .ml-auto#{$infix},
+    .mx-auto#{$infix} {
+      margin-left: auto !important;
+    }
+  }
+}

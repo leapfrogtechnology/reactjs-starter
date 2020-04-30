@@ -1,0 +1,38 @@
+.accordion-header {
+  outline: none;
+  cursor: pointer;
+  @include e(inner) {
+    display: flex;
+    justify-content: space-between;
+    padding: getSpacing('5x') getSpacing('4x');
+  }
+  @include e(title) {
+    @include getHeaderFontSize('h5');
+    font-weight: getFontWeight('normal');
+    color: getColor('secondary.base');
+    display: flex;
+    align-items: center;
+    div[data-tooltipped] {
+      line-height: 1;
+    }
+  }
+  @include e(icon) {
+    width: 18px;
+    height: auto;
+    color: getColor('tertiary-blue.60');
+    margin-left: getSpacing('2x');
+  }
+  @include e(icon-indicator) {
+    @include transition();
+    .accordion-header--active & {
+      @include transition();
+      transform: rotateX(180deg);
+    }
+  }
+}
+.rc-collapse-content-inactive {
+  display: none;
+}
+.rc-collapse-content {
+  overflow: hidden;
+}

@@ -5,32 +5,3 @@
 // Cleaning up the code in _shame.scss should be done at spare time. Find out whose code it is by
 // using: $ git blame _shame.scss
 // ==========================================================================
-
-* {
-  box-sizing: border-box;
-}
-
-// Transformation
-.text-lowercase {
-  text-transform: lowercase;
-}
-
-.text-uppercase {
-  text-transform: uppercase;
-}
-
-.text-capitalize {
-  text-transform: capitalize;
-}
-
-.fs15 {
-  font-size: 15px;
-}
-
-.mr-8 {
-  margin-right: 8px;
-}
-
-.background-transparent {
-  background-color: transparent;
-}

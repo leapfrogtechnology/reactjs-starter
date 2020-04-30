@@ -1,0 +1,103 @@
+.navbar {
+  background-color: getColor('white.base');
+  @include e(wrap) {
+    display: flex;
+    align-items: center;
+    height: $navbar-height;
+    @include m(content-spread) {
+      justify-content: space-between;
+    }
+  }
+  @include m(sticky) {
+    position: sticky;
+    top: 0;
+    z-index: 99;
+  }
+  @include m(bordered-bottom) {
+    border-bottom: 1px solid getColor('tertiary-blue.5');
+  }
+  @include e(logo) {
+    width: 156px;
+    height: auto;
+    margin-right: getSpacing('8x');
+  }
+  @include e(left) {
+    display: flex;
+    align-items: center;
+  }
+
+  @include e(right-logout) {
+    position: relative;
+  }
+}
+
+.nav {
+  display: flex;
+  @include e(node) {
+    padding: 0 getSpacing('4x');
+  }
+  @include e(link) {
+    color: getColor('grey.50');
+    @include getFontSize('body1');
+    font-weight: getFontWeight('semibold');
+    @include m(active) {
+      color: getColor('primary.base');
+    }
+  }
+}
+.secondary-nav {
+  background-color: white;
+  @include e(wrap) {
+    height: 55px;
+    display: flex;
+    align-items: center;
+  }
+  @include e(nodes) {
+    margin: {
+      top: getSpacing('2x');
+      bottom: getSpacing('2x');
+      right: getSpacing('3x');
+    }
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}
+
+.dropmenu {
+  position: absolute;
+  top: 100%;
+  background-color: $white;
+  border-radius: 4px;
+  width: 100%;
+  padding: 8px 0;
+  box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  z-index: 2;
+  pointer-events: none;
+  transform: translateY(-30px);
+  transition: all 0.1s ease;
+  margin-top: 8px;
+  &.show {
+    opacity: 1;
+    pointer-events: all;
+    transform: translateY(0);
+  }
+  @include e(node) {
+    a {
+      padding: 8px 16px;
+      color: $black;
+      @include getFontSize('small');
+    }
+  }
+}
+
+.sp-menu-toggle {
+  height: 50px;
+  @include mq(sm) {
+    display: none;
+  }
+}
+.toggle-menu {
+  cursor: pointer;
+}

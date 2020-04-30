@@ -1,0 +1,146 @@
+// This will generate utility class for header fonts
+// .${prefix}-h1
+// Example:
+// .lf-h1{
+//    font-size: 52px;
+//    line-height: 63px;
+// }
+//
+@mixin generate-header-font($map: get('header', $fontSize)) {
+  @each $name, $value in $map {
+    .#{$prefix}#{$name} {
+      @include getHeaderFontSize('#{$name}');
+    }
+  }
+}
+@if ($generate-header-font-classes) {
+  @include generate-header-font;
+}
+
+// This will generate utility class for body fonts
+// .${prefix}-body
+// Example:
+// .lf-body{
+//    font-size: 17px;
+//    line-height: 21px;
+// }
+//
+@mixin generate-font-class($map: get('font', $fontSize)) {
+  @each $name, $value in $map {
+    .#{$prefix}#{$name} {
+      @include getFontSize('#{$name}');
+    }
+  }
+}
+
+@if ($generate-font-classes) {
+  @include generate-font-class;
+}
+
+// This will generate utility class for text-decorations
+// .${prefix}-text-striked
+// Example:
+// .lf-text-striked{
+//    text-decoration:line-through;
+// }
+//
+@mixin generate-font-decoration-class($map: $fontDecoration) {
+  @each $name, $value in $map {
+    .#{$prefix}text-#{$name} {
+      text-decoration: $value;
+    }
+  }
+}
+@if ($generate-font-decoration-classes) {
+  @include generate-font-decoration-class;
+}
+
+// This will generate utility class for text-decorations
+// .${prefix}-text-uppercase
+// Example:
+// .lf-text-uppercase{
+//    text-transform: uppercase;
+// }
+//
+@mixin generate-font-case-class($map: $fontCase) {
+  @each $name, $value in $map {
+    .#{$prefix}text-#{$name} {
+      text-transform: $value;
+    }
+  }
+}
+@if ($generate-font-case-classes) {
+  @include generate-font-case-class;
+}
+
+// This will generate utility class for font-case
+// .${prefix}-text-uppercase
+// Example:
+// .lf-text-uppercase{
+//    text-transform: uppercase;
+// }
+//
+@mixin generate-font-case-class($map: $fontCase) {
+  @each $name, $value in $map {
+    .#{$prefix}text-#{$name} {
+      text-transform: $value;
+    }
+  }
+}
+@if ($generate-font-case-classes) {
+  @include generate-font-case-class;
+}
+
+// This will generate utility class for font-style
+// .${prefix}-text-italic
+// Example:
+// .lf-text-italic{
+//    font-style: italic;
+// }
+//
+@mixin generate-font-style-class($map: $fontStyle) {
+  @each $name, $value in $map {
+    .#{$prefix}text-#{$name} {
+      font-style: $value;
+    }
+  }
+}
+@if ($generate-font-style-classes) {
+  @include generate-font-style-class;
+}
+
+// This will generate utility class for text-alignments
+// .${prefix}-text-center
+// Example:
+// .lf-text-center{
+//    text-align: center;
+// }
+//
+@mixin generate-text-alignment-class($map: $textAlignment) {
+  @each $name, $value in $map {
+    .#{$prefix}text-#{$name} {
+      text-align: $value;
+    }
+  }
+}
+@if ($generate-text-alignment-classes) {
+  @include generate-text-alignment-class;
+}
+
+// This will generate utility class for font-weight
+// .${prefix}-font-bold
+// Example:
+// .lf-text-bold{
+//    font-weight: bold;
+// }
+//
+@mixin generate-font-weight-class($map: $fontWeight) {
+  @each $name, $value in $map {
+    .#{$prefix}text-#{$name} {
+      font-weight: $value;
+    }
+  }
+}
+@if ($generate-font-weight-classes) {
+  @include generate-font-weight-class;
+}

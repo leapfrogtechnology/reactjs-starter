@@ -1,0 +1,106 @@
+$dropdown-shadow: 0px 1px 13px rgba(0, 0, 0, 0.09);
+$focus-shadow: 0px 0px 0 1px getColor('tertiary-blue.60');
+
+.custom-dropdown {
+  .lf-select {
+    @include m(small) {
+    }
+    @include e(indicator-separator) {
+      display: none;
+    }
+    @include e(control) {
+      cursor: pointer;
+      min-width: 64px;
+      color: getColor('grey.60');
+      border-radius: $default-border-radius;
+      @include getFontSize('body1');
+      min-height: 32px;
+      border-color: getColor('grey.20');
+      &:hover {
+        border-color: getColor('grey.40');
+      }
+      @include m(is-focused) {
+        background-color: getColor('tertiary-blue.5');
+        box-shadow: $focus-shadow;
+        border-color: getColor('tertiary-blue.60');
+        &:hover {
+          border-color: getColor('tertiary-blue.60');
+        }
+      }
+    }
+    @include e(dropdown-indicator) {
+      color: getColor('grey.60');
+      padding: getSpacing('1x') getSpacing('2x');
+    }
+    @include e(value-container) {
+    }
+    @include e(single-value) {
+      color: getColor('grey.60');
+    }
+    @include m(plain) {
+      .lf-select {
+        @include e(control) {
+          border: none;
+          @include getFontSize('small');
+          min-height: inherit;
+          &:hover {
+            background-color: getColor('tertiary-blue.5');
+          }
+          @include m(is-focused) {
+            background-color: getColor('tertiary-blue.5');
+            box-shadow: none;
+          }
+        }
+      }
+    }
+    @include m(small) {
+      .lf-select {
+        @include e(dropdown-indicator) {
+          padding: 0;
+          padding-right: 4px;
+          width: 18px;
+        }
+      }
+    }
+    @include m(small) {
+      .lf-select {
+        @include e(control) {
+          @include getFontSize('small');
+          min-height: inherit;
+          &:hover {
+            background-color: getColor('tertiary-blue.5');
+          }
+          @include m(is-focused) {
+            background-color: getColor('tertiary-blue.5');
+            box-shadow: none;
+          }
+        }
+      }
+    }
+    @include m(plain) {
+      .lf-select {
+        @include e(dropdown-indicator) {
+          padding: 0;
+          padding-right: 4px;
+          width: 18px;
+        }
+      }
+    }
+  }
+}
+
+.lf-select {
+  @include e(menu) {
+    box-shadow: $dropdown-shadow !important;
+    @include getFontSize('body1');
+  }
+  @include e(option) {
+    cursor: pointer !important;
+    @include m(is-focused) {
+      background-color: getColor('grey.5') !important;
+    }
+    @include m(is-selected) {
+      background-color: getColor('tertiary-blue.60') !important;
+    }
+  }
+}

@@ -1,0 +1,9 @@
+@if ($generate-color-classes) {
+  @each $name, $color in $colorMap {
+    @each $colorKey, $colorValue in $color {
+      .#{$prefix}color-#{$name}-#{$colorKey} {
+        color: $colorValue !important;
+      }
+    }
+  }
+}

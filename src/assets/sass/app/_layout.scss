@@ -1,0 +1,16 @@
+.content-wrap {
+  margin: getSpacing('8x') 0;
+}
+
+//demo css
+
+.demo-path {
+  position: fixed;
+  top: 50%;
+  left: 0;
+  max-width: 120px;
+  a {
+    padding: getSpacing('3x');
+    display: block;
+  }
+}

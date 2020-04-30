@@ -82,14 +82,25 @@ class EmployeeList extends Component {
     const { employees, loading } = this.state;
 
     return (
-      <div className="container">
-        <div className="full-scope-card">
-          <div className="full-scope-card__header">
-            <div className="table-header">
-              <h3>{'Employee List'}</h3>
+      <div className="cotent-wrap">
+        <div className="container">
+          <div className="title-bar mb-5x"></div>
+          <div className="card card--elevated">
+            <div className="title-bar__contents">
+              <div className="title-bar__left">
+                <h4 className="title-bar__title">Employee List</h4>
+              </div>
+              <div className="title-bar__right">
+                <Link to={routes.EMPLOYEES_ADD} className="btn btn--blue">
+                  Add
+                </Link>
+              </div>
             </div>
           </div>
-          <Link to={routes.EMPLOYEES_ADD}>Add</Link>
+        </div>
+
+        <div className="container">
+          <div className="mb-5x"></div>
           <div className="full-scope-card__content">
             <Table columns={columns} data={employees} />
           </div>

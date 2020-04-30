@@ -7,54 +7,56 @@
 // Changes in style other than default should be overwritten using other partials.
 // ==========================================================================
 
+// Import Custom font here.
+@import url($font-url);
+
 // Reset CSS
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  &:after {
-    // Global Clearfixing
-    clear: both;
-    content: '';
-    display: block;
+  // Global Clearfixing
+  @if $grid-type == float {
+    &:after {
+      clear: both;
+      content: '';
+      display: block;
+    }
   }
 }
 
 // Base Code
 html,
 body {
-  font-size: $default-font-size;
+  font-size: 100%;
 }
 
 body {
   -webkit-font-smoothing: antialiased;
-  color: $color-text;
-  font-family: $font-family--primary;
+  color: getColor('grey.80');
+  font-family: $font-primary;
+  font-size: $base__font-size;
   text-rendering: optimizeLegibility;
-  background-color: $faded-background;
-  @include mqmax(sm) {
-    margin-bottom: 60px;
-    //offset for fixed action button
-  }
+  background-color: $bg-color;
+  line-height: $base__body__line;
 }
 
 a {
   outline: none;
-  color: $color-link;
+  color: getColor('primary.base');
   text-decoration: none;
-  transition: color 0.2s;
+  &:hover {
+    color: getColor('primary.dark');
+  }
 }
 
-a,
-span,
-strong {
-  &:after {
-    @extend %clearfix-none;
-  }
-  &:hover,
-  &:focus {
-    text-decoration: none;
-    outline: none;
+@if $grid-type == float {
+  a,
+  span,
+  strong {
+    &:after {
+      @extend %clearfix-none;
+    }
   }
 }
 
@@ -69,40 +71,36 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: $font-family--primary;
-  margin: 0;
+  font-family: $font-primary;
+  line-height: $base__header__line;
 }
 
 h1 {
-  font-size: $head1-font-size;
+  @include getHeaderFontSize('h1');
 }
 
 h2 {
-  font-size: $head2-font-size;
+  @include getHeaderFontSize('h2');
 }
 
 h3 {
-  font-size: $head3-font-size;
+  @include getHeaderFontSize('h3');
+}
+
+h4 {
+  @include getHeaderFontSize('h4');
+}
+
+h5 {
+  @include getHeaderFontSize('h5');
+}
+
+h6 {
+  @include getHeaderFontSize('h6');
 }
 
 img {
   max-width: 100%;
+  height: auto;
   vertical-align: top;
-}
-
-main {
-  padding: 30px 0;
-}
-
-textarea {
-  resize: none;
-  min-height: 108px;
-}
-
-input[type='radio'] {
-  width: 16px;
-  height: 16px;
-  cursor: pointer;
-  z-index: 20;
-  opacity: 0;
 }

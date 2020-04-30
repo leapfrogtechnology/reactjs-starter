@@ -1,0 +1,39 @@
+.editor-wrap {
+  position: relative;
+  background-color: getColor('tertiary-blue.5');
+  border-radius: $default-border-radius;
+  .tox-tinymce {
+    border-radius: $default-border-radius;
+    border-color: getColor('grey.20');
+  }
+  .tox {
+    height: 100% !important;
+    width: 100%;
+    position: absolute;
+    .tox-statusbar {
+      border-top: 0;
+    }
+    .tox-statusbar__text-container {
+      display: none;
+    }
+  }
+  .editor-wrap__resizer {
+    width: 10px;
+    height: 1px;
+    border-radius: $default-border-radius;
+    position: absolute;
+    bottom: 4px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: getColor('grey.40');
+    &:before {
+      content: '';
+      border-radius: $default-border-radius;
+      position: absolute;
+      transform: translateY(-3px);
+      background-color: getColor('grey.40');
+      width: 100%;
+      height: 1px;
+    }
+  }
+}

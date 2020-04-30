@@ -1,0 +1,50 @@
+.box-links {
+  display: flex;
+  align-items: center;
+  @include e(nodes) {
+    width: 46px;
+    height: 46px;
+    border: 1px solid getColor('grey.15');
+    background-color: getColor('grey.5');
+    @include getHeaderFontSize('h3');
+    font-weight: getFontWeight('bold');
+    color: getColor('grey.60');
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: -1px;
+    cursor: pointer;
+    & > div {
+      display: flex !important;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 100%;
+    }
+    &:first-child {
+      border-radius: $default-border-radius 0 0 $default-border-radius;
+    }
+    &:last-child {
+      border-radius: 0 $default-border-radius $default-border-radius 0;
+    }
+    &:hover {
+      background-color: getColor('grey.15');
+    }
+    @include m(active) {
+      background: getColor('tertiary-blue.40');
+      border: 1px solid getColor('tertiary-blue.60');
+      color: getColor('white.base');
+      &:hover {
+        background: getColor('tertiary-blue.60');
+      }
+    }
+    @include m(done) {
+      background: getColor('primary.base');
+      border: 1px solid getColor('primary.dark');
+      color: getColor('white.base');
+      &:hover {
+        background: getColor('primary.dark');
+      }
+    }
+  }
+}

@@ -1,0 +1,98 @@
+// Base font size
+$base__header__line: 1.25 !default;
+$base__body__line: 1.3 !default;
+$base__font-size: 1rem !default;
+
+// Custom font url
+$font-url: 'https://rsms.me/inter/inter.css' !default;
+$font-custom: 'Inter' !default;
+
+// Font Declaration
+$font-sans: $font-custom, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, 'Apple Color Emoji',
+  'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
+$font-primary: $font-sans;
+
+//font-weight
+$fontWeight: (
+  'light': 300,
+  'normal': 400,
+  'medium': 500,
+  'semibold': 600,
+  'bold': 700,
+  'heavy': 900,
+);
+
+$fontSize: (
+  'header': (
+    'h1': (
+      'font-size': 3rem,
+      'line-height': $base__header__line,
+    ),
+    'h2': (
+      'font-size': 2rem,
+      'line-height': $base__header__line,
+    ),
+    'h3': (
+      'font-size': 1.5rem,
+      'line-height': $base__header__line,
+    ),
+    'h4': (
+      'font-size': 1.25rem,
+      'line-height': $base__header__line,
+    ),
+    'h5': (
+      'font-size': 1.125rem,
+      'line-height': $base__header__line,
+    ),
+    'h6': (
+      'font-size': 1rem,
+      'line-height': $base__header__line,
+    ),
+  ),
+  'font': (
+    'body1': (
+      'font-size': 0.875rem,
+      'line-height': $base__body__line,
+    ),
+    'body2': (
+      'font-size': 1rem,
+      'line-height': $base__body__line,
+    ),
+    'small': (
+      'font-size': 0.75rem,
+      'line-height': $base__body__line,
+    ),
+    'smaller': (
+      'font-size': 0.625rem,
+      'line-height': $base__body__line,
+    ),
+    'tiny': (
+      'font-size': 0.5rem,
+      'line-height': $base__body__line,
+    ),
+  ),
+);
+
+$fontDecoration: (
+  'striked': line-through,
+  'underlined': underline,
+);
+
+$fontCase: (
+  'uppercase': uppercase,
+  'lowercase': lowercase,
+  'capitalized': capitalize,
+);
+
+$fontStyle: (
+  'normal': normal,
+  'italic': italic,
+  'oblique': oblique,
+);
+
+$textAlignment: (
+  'center': center,
+  'left': left,
+  'right': right,
+  'justified': justify,
+);

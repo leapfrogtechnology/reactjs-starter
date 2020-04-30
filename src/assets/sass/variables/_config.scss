@@ -1,0 +1,39 @@
+// ==========================================================================
+// Config
+// Define variables, maps and fonts at this partial.
+// ==========================================================================
+
+// CONSTANTS
+$rem: 'rem';
+$em: 'em';
+$px: 'px';
+
+//Enter your Web Address here for print media
+$domain-name: 'www.domain-name.com';
+
+//Path to Assets
+$path--rel: '../images';
+
+$unit: 'rem';
+
+// Customize your prefix
+// append "-" to the prefix
+$prefix: '';
+
+$default-border-radius: 4px;
+
+// ==========================================================================
+// Features
+// Set true to enable features
+// ==========================================================================
+
+// Utility Classes
+$generate-font-classes: true;
+$generate-color-classes: true;
+$generate-button-classes: true;
+$generate-font-case-classes: true;
+$generate-font-style-classes: true;
+$generate-font-weight-classes: true;
+$generate-header-font-classes: true;
+$generate-text-alignment-classes: true;
+$generate-font-decoration-classes: true;

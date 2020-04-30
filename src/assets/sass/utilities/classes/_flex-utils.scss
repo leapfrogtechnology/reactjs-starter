@@ -1,0 +1,95 @@
+@mixin flex-modifier($breakpoints, $flex-utilities) {
+  @each $name, $breakpoint in $breakpoints {
+    @include mq($name) {
+      @if ($name == 'xs') {
+        .d-none {
+          display: none !important;
+        }
+        .d-inline {
+          display: inline !important;
+        }
+        .d-inline-block {
+          display: inline-block !important;
+        }
+        .d-block {
+          display: block !important;
+        }
+        .d-table {
+          display: table !important;
+        }
+        .d-table-row {
+          display: table-row !important;
+        }
+        .d-table-cell {
+          display: table-cell !important;
+        }
+        .d-flex {
+          display: flex !important;
+        }
+        .d-inline-flex {
+          display: inline-flex !important;
+        }
+      } @else {
+        .d-#{$name}-none {
+          display: none !important;
+        }
+        .d-#{$name}-inline {
+          display: inline !important;
+        }
+        .d-#{$name}-inline-block {
+          display: inline-block !important;
+        }
+        .d-#{$name}-block {
+          display: block !important;
+        }
+        .d-#{$name}-table {
+          display: table !important;
+        }
+        .d-#{$name}-table-row {
+          display: table-row !important;
+        }
+        .d-#{$name}-table-cell {
+          display: table-cell !important;
+        }
+        .d-#{$name}-flex {
+          display: flex !important;
+        }
+        .d-#{$name}-inline-flex {
+          display: inline-flex !important;
+        }
+      }
+      @each $types, $map in $flex-utilities {
+        @if ($types == order) {
+          @for $i from 1 through $grid-count {
+            @if $breakpoint == 0 {
+              .#{$types}-#{$i} {
+                #{$types}: #{$i};
+              }
+            } @else {
+              .#{$types}-#{$i}-#{$name} {
+                #{$types}: #{$i};
+              }
+            }
+          }
+        }
+        @each $type, $properties in $map {
+          @if $breakpoint == 0 {
+            .#{$type} {
+              #{$types}: $properties;
+            }
+          } @else {
+            .#{$type}-#{$name} {
+              #{$types}: $properties;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@if ($grid-type == 'flex' or $grid-type == 'float') {
+  @include flex-modifier($breakpoints: $grid-breakpoints, $flex-utilities: $flex-utilities);
+} @else {
+  @error "$grid-type should be 'flex' or 'float'";
+}

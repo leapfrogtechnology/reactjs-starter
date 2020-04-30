@@ -1,0 +1,20 @@
+.lf-table {
+  @include e(head-row) {
+    border-bottom: 1px solid getColor('grey.15');
+  }
+  @include e(row) {
+    cursor: pointer;
+    &:nth-child(odd) {
+      background: getColor('tertiary-blue.5');
+    }
+  }
+  @include e(col) {
+    padding: getSpacing('5x') getSpacing('4x');
+    @include getFontSize('small');
+    color: getColor('grey.80');
+    @include m(head) {
+      padding: getSpacing('4x');
+      font-weight: getFontWeight('semibold');
+    }
+  }
+}

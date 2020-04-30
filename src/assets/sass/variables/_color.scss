@@ -1,0 +1,98 @@
+// Default Color
+$white: #ffffff !default;
+$black: #000000 !default;
+
+// Base colors
+$primary-color: #2ecc71 !default;
+$secondary-color: #102b7b !default;
+$error-color: #ef5350 !default;
+$warning-color: #ffca28 !default;
+$warning-alt-color: #ff9800 !default;
+$blue-grey: #9cb2bf !default;
+$base-grey: #333333 !default;
+
+$bg-color: #f6f8f9 !default;
+
+//Color Palette
+$colorMap: (
+  'white': (
+    'base': $white,
+  ),
+  'black': (
+    'base': $black,
+  ),
+  'primary': (
+    'base': $primary-color,
+    'dark': darken($primary-color, 10%),
+    'light': lighten($primary-color, 10%),
+  ),
+  'secondary': (
+    'base': $secondary-color,
+    'dark': darken($secondary-color, 10%),
+    'light': lighten($secondary-color, 10%),
+  ),
+  'tertiary-blue': (
+    '60': #2196f3,
+    '40': #29b6f6,
+    '20': #4fc3f7,
+    '5': #f4f7f9,
+  ),
+  'tertiary-red': (
+    '60': #f44336,
+    '40': #ef5350,
+    '20': #e57373,
+  ),
+  'tertiary-green': (
+    '60': #4caf50,
+    '40': #66bb6a,
+    '20': #81c784,
+  ),
+  'tertiary-yellow': (
+    '60': #ffc107,
+    '40': #ffca28,
+    '20': #ffd54f,
+  ),
+  'grey': (
+    '5': #f6f6f6,
+    '10': #f2f2f2,
+    '15': #e6e6e6,
+    '20': #d2d2d2,
+    '40': #b2b2b2,
+    '50': #999999,
+    '60': #737373,
+    '70': #515151,
+    '80': #333333,
+  ),
+);
+
+$component-color-variants: (
+  'primary': (
+    'bg-color': getColor('primary.base'),
+    'hover-color': getColor('primary.dark'),
+  ),
+  'secondary': (
+    'bg-color': getColor('secondary.base'),
+    'hover-color': getColor('secondary.dark'),
+  ),
+  'red': (
+    'bg-color': getColor('tertiary-red.60'),
+    'hover-color': getColor('tertiary-red.40'),
+  ),
+  'yellow': (
+    'bg-color': getColor('tertiary-yellow.60'),
+    'hover-color': getColor('tertiary-yellow.40'),
+  ),
+  'blue': (
+    'bg-color': getColor('tertiary-blue.60'),
+    'hover-color': getColor('tertiary-blue.40'),
+  ),
+  'green': (
+    'bg-color': getColor('tertiary-green.60'),
+    'hover-color': getColor('tertiary-green.40'),
+  ),
+  'grey': (
+    'bg-color': getColor('grey.50'),
+    'hover-color': getColor('grey.20'),
+    'hover-text-color': getColor('white.base'),
+  ),
+);
