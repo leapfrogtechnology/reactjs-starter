@@ -13,50 +13,55 @@ const Header = ({ loggedInUser, logout }) => {
   const [isMenuShown, setIsMenuShown] = useState(false);
 
   return (
-    <header>
-      <div className="header--top d-flex flex-fix align-items-center">
-        <div className="container flex-1 flex-fix d-flex justify-content-between align-items-center">
-          <div className="toggle-menu d-md-none">
-            <FiMenu size="24" />
-          </div>
-          <div className="header-left">
-            <div className="logo">
-              <a href="/" title="Leapfrog Technology">
-                <img src={logoFull} alt="Leapfrog Technology" />
-              </a>
-            </div>
-            <ul className={classnames('header-left__nav left')}>
-              <li className="header-left__item">
-                <Link to={routes.EMPLOYEES} href="/menu1">
-                  Employees
-                </Link>
-              </li>
-            </ul>
-          </div>
-          <ul className="header-right">
-            <li className="header-right__item dropdown-cover d-flex align-items-center">
-              <div className="user-card d-flex align-items-center">
-                <img alt="display" src={logoFull} className="left nametag nametag--lg profile-photo" />
-                <span className="text-truncate">{loggedInUser.first_name}</span>
-                <FiChevronDown
-                  className="icon--grey ml-10 flex-shrink-0"
-                  size="18px"
-                  onClick={() => setIsMenuShown(!isMenuShown)}
-                />
+    <>
+      <nav className="navbar navbar--bordered-bottom navbar--sticky">
+        <div className="container">
+          <div className="navbar__wrap navbar__wrap--content-spread">
+            <div className="navbar__left">
+              <div className="navbar__logo">
+                <img src={logoFull} alt="logo" />
               </div>
-
-              <div className={classnames('dropmenu', { show: isMenuShown })}>
-                <div className="dropmenu__node">
-                  <a href="#" title="Logout" onClick={logout}>
-                    Log Out
+              <div className="nav">
+                <div className="nav__node">
+                  <Link to={routes.EMPLOYEES} href="/menu1">
+                    Employees
+                  </Link>
+                </div>
+                <div className="nav__node">
+                  <a href="/" className="nav__link">
+                    Timesheet
+                  </a>
+                </div>
+                <div className="nav__node">
+                  <a href="/" className="nav__link">
+                    Leave
                   </a>
                 </div>
               </div>
-            </li>
-          </ul>
+            </div>
+
+            <div className="navbar__right">
+              <div className="media media--small navbar__right-logout">
+                <div className="avatar avatar--round avatar--sm">
+                  <img src={'https://images.lftechnology.com/avatar/349.png'} alt={loggedInUser.first_name} />
+                </div>
+                <div className="media__content media__content--small-spaced">
+                  <h4 className="media__title media__title--sm-font font-weight--normal">{loggedInUser.first_name}</h4>
+                </div>
+                <FiChevronDown className="color-grey-40" onClick={() => setIsMenuShown(!isMenuShown)} />
+                <div className={classnames('dropmenu', { show: isMenuShown })}>
+                  <div className="dropmenu__node">
+                    <a href="#" title="Logout" onClick={logout}>
+                      Log Out
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-    </header>
+      </nav>
+    </>
   );
 };
 
