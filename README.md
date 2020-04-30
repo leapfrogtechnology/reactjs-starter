@@ -18,6 +18,10 @@ Runs the app in the development mode with a mock server.<br>
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 Mock server will run at [http://localhost:8080](http://localhost:8080).
 
+Default login:
+- email: vyaguta@vyaguta.com
+- password: vyaguta
+
 ### `yarn start`
 
 Runs the app in the development mode.<br>
