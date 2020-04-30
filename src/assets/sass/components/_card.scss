@@ -1,0 +1,10 @@
+.card {
+  border-radius: $card-radius;
+  background-color: getColor('white.base');
+  @include m(elevated) {
+    box-shadow: $box-shadow;
+  }
+  @include m(scrollable) {
+    overflow: auto;
+  }
+}

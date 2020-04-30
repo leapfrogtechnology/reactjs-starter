@@ -1,0 +1,70 @@
+// Media Queries
+// $break  - RWD break point values, change them in _config.scss. Default: bootstrap grid
+// @usage  - `.Nav {@include mq(sm) {...}}`
+@mixin mq($break) {
+  @if $break== 'xs' {
+    //lowest breakpoint value
+    @content;
+  } @else if $break== 'sm' {
+    // phone
+    @media (min-width: $sm-device) {
+      @content;
+    }
+  } @else if $break== 'md' {
+    // tablet
+    @media (min-width: $md-device) {
+      @content;
+    }
+  } @else if $break== 'lg' {
+    // laptop and desktop
+    @media (min-width: $lg-device) {
+      @content;
+    }
+  } @else if $break== 'xl' {
+    // High res desktop and TVs
+    @media (min-width: $xl-device) {
+      @content;
+    }
+  } @else {
+    @error "No value could be retrieved for '#{$break}'";
+  }
+}
+
+// Media Queries
+// $break  - RWD break point values, change them in _config.scss. Default: bootstrap grid
+// @usage  - `.Nav {@include mq(sm) {...}}`
+// if custom set to true $break will be the break point
+@mixin mqmax($break, $custom: false) {
+  @if $custom==true {
+    @media (max-width: $break + 'px') {
+      @content;
+    }
+  } @else {
+    @if $break== 'xs' {
+      //lowest breakpoint value
+      @content;
+    } @else if $break== 'sm' {
+      // phone
+      @media (max-width: $sm-device) {
+        @content;
+      }
+    } @else if $break== 'md' {
+      // tablet
+      @media (max-width: $md-device) {
+        @content;
+      }
+    } @else if $break== 'lg' {
+      // laptop and desktop
+      @media (max-width: $lg-device) {
+        @content;
+      }
+    } @else if $break== 'xl' {
+      // High res desktop and TVs
+      @media (max-width: $xl-device) {
+        @content;
+      }
+    } @else {
+      @error "No value could be retrieved for '#{$break}'";
+    }
+  }
+}

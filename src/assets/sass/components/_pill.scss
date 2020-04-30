@@ -1,0 +1,33 @@
+.pill {
+  padding: getSpacing('2x') getSpacing('4x');
+  border-radius: $pill-radius;
+  display: inline-block;
+  font-weight: getFontWeight('semibold');
+  @include getFontSize('small');
+  color: getColor('grey.50');
+  line-height: 1.1;
+  @include m(large) {
+    @include getFontSize('body1');
+  }
+  @include m(smaller) {
+    @include getFontSize('smaller');
+  }
+
+  @include m(navigation) {
+    font-weight: getFontWeight('normal');
+    @include transition();
+    &:hover {
+      background-color: getColor('tertiary-blue.5');
+      color: getColor('grey.50');
+    }
+    @include m(active) {
+      color: getColor('tertiary-blue.40');
+      font-weight: getFontWeight('semibold');
+      background-color: getColor('tertiary-blue.5');
+      &:hover {
+        background-color: darken(getColor('tertiary-blue.5'), 5%);
+        color: getColor('tertiary-blue.60');
+      }
+    }
+  }
+}

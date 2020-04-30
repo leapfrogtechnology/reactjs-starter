@@ -1,0 +1,24 @@
+//Grid variables
+$grid-count: 12 !default;
+$grid-class: col !default;
+$gutter-width: 32px !default;
+
+$grid-breakpoints: (
+  xs: 0,
+  sm: $sm-device,
+  md: $md-device,
+  lg: $lg-device,
+  xl: $xl-device,
+) !default;
+
+$container-max-widths: (
+  sm: 540px,
+  md: 720px,
+  lg: 960px,
+  xl: 1140px,
+) !default;
+
+$grid-container: 'container';
+$grid-container-fluid: 'container-fluid';
+$row-name: 'row';
+$grid-type: flex; //type of grid (either 'float' or 'flex' only)

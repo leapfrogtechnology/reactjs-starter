@@ -1,0 +1,37 @@
+@mixin transition($property: all, $duration: 0.2s, $timing: $ease--smooth-fade, $delay: '') {
+  transition: $property $duration $timing unquote($delay);
+}
+
+@mixin centralize($direction: 'horizontal') {
+  position: absolute;
+  @if $direction == 'horizontal' {
+    transform: translateX(-50%);
+    left: 50%;
+  } @else if $direction == 'vertical' {
+    transform: translateY(-50%);
+    top: 50%;
+  } @else {
+    @error ('$direction should not be any other than "horizontal" or "vertical"');
+  }
+}
+
+@mixin pulse-animation($color: getColor('primary.base'), $duration: 1s, $fillmode: forwards) {
+  @keyframes pulse {
+    0% {
+      transform: scale(0.95);
+      box-shadow: 0 0 0 0 rgba($color, 0.7);
+    }
+
+    70% {
+      transform: scale(1);
+      box-shadow: 0 0 0 15px rgba($color, 0);
+    }
+
+    100% {
+      transform: scale(0.95);
+      box-shadow: 0 0 0 0 rgba($color, 0);
+    }
+  }
+
+  animation: pulse $duration $fillmode;
+}

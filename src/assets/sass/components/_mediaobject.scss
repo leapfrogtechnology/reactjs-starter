@@ -1,0 +1,25 @@
+.media {
+  display: flex;
+  align-items: center;
+  @include e(content) {
+    margin-left: getSpacing('4x');
+    @include m('medium-spaced') {
+      margin-left: getSpacing('3x');
+    }
+    @include m('small-spaced') {
+      margin-left: getSpacing('2x');
+    }
+  }
+  @include e(title) {
+    @include getHeaderFontSize('h6');
+    color: getColor('grey.80');
+    @include m(sm-font) {
+      @include getFontSize('body1');
+    }
+  }
+  @include e(body) {
+    @include m(xs-font) {
+      @include getFontSize('small');
+    }
+  }
+}

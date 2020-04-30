@@ -1,0 +1,36 @@
+.status-indicator {
+  display: flex;
+  align-items: center;
+  @include getFontSize('body1');
+  @include m(small) {
+    @include getFontSize('small');
+  }
+  @include m(small) {
+    .status-indicator {
+      @include e(bulb) {
+        width: 6px;
+        height: 6px;
+      }
+    }
+  }
+  @each $name, $colorMap in $component-color-variants {
+    @include m(#{$name}) {
+      .status-indicator {
+        @include e(bulb) {
+          background-color: get('bg-color', $colorMap);
+        }
+      }
+    }
+  }
+
+  @include e(bulb) {
+    width: 10px;
+    height: 10px;
+    background-color: getColor('tertiary-blue.5');
+    border-radius: $circle-radius;
+  }
+
+  @include e(label) {
+    margin-left: getSpacing('2x');
+  }
+}

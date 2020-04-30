@@ -1,0 +1,54 @@
+.lf-modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  right: auto;
+  bottom: auto;
+  transform: translate(-50%, -50%);
+  background-color: getColor('white.base');
+  max-width: 520px;
+  border-radius: getSpacing('1x');
+  border: 0;
+  outline: none;
+
+  @include e(overlay) {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: lighten(getColor('black.base'), 30%);
+    z-index: 99;
+  }
+
+  @include e(header) {
+    padding: getSpacing('5x');
+  }
+
+  @include e(title) {
+    @include getHeaderFontSize('h3');
+    color: getColor('secondary.base');
+    font-weight: getFontWeight('bold');
+  }
+
+  @include e(body) {
+    padding: 0 getSpacing('5x') getSpacing('5x');
+  }
+
+  @include e(info) {
+    font-size: getFontSize('body1');
+    line-height: 1.25;
+    color: getColor('grey.60');
+
+    @include m(danger) {
+      color: getColor('tertiary-red.60');
+      margin-bottom: getSpacing('3x');
+    }
+  }
+
+  @include e(footer) {
+    padding: getSpacing('5x');
+    display: flex;
+    border-top: 1px solid getColor('grey.15');
+  }
+}

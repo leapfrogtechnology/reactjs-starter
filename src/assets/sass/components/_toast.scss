@@ -1,0 +1,53 @@
+.lf-toast {
+  background-color: getColor('tertiary-green.60');
+  color: getColor('white.base');
+  padding: getSpacing('3x') getSpacing('5x');
+  display: flex;
+  align-items: center;
+
+  @include m(danger) {
+    background-color: getColor('tertiary-red.60');
+  }
+
+  @include m(warning) {
+    background-color: getColor('tertiary-yellow.60');
+  }
+
+  @include e(content) {
+    margin-left: getSpacing('4x');
+    text-align: left;
+  }
+
+  @include e(icon) {
+    line-height: 0;
+  }
+
+  @include e(title) {
+    @include getFontSize('body2');
+    font-weight: getFontWeight('bold');
+    margin-bottom: getSpacing('1x');
+    text-transform: capitalize;
+    line-height: 1.5;
+  }
+
+  @include e(message) {
+    @include getFontSize('body1');
+    line-height: 1.2;
+  }
+
+  @include e(container) {
+    padding: 0;
+
+    & .Toastify__toast {
+      padding: 0;
+    }
+
+    & .lf-toast__progress-bar {
+      background: getColor('white.base');
+    }
+
+    & .Toastify__toast-body {
+      margin: 0;
+    }
+  }
+}
