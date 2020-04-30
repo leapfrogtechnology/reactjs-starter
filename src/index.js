@@ -1,8 +1,8 @@
 import './public.js';
 
-import React, { StrictMode } from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
+import React, { StrictMode } from 'react';
 import { PersistGate } from 'redux-persist/integration/react';
 
 import store, { persistor } from './store';

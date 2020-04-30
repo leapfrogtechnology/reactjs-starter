@@ -33,6 +33,7 @@ const EmailLogin = ({ login }) => (
 
         <div>
           <label htmlFor="">Password</label>
+
           <input
             autoComplete="current-password"
             name="password"
