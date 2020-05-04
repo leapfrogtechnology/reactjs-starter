@@ -49,6 +49,7 @@ export async function responseInterceptor(error) {
   }
 
   const originalRequest = error.config;
+
   const { code, message } = error.response.data.error;
 
   if (code === HttpStatus.UNAUTHORIZED && message === TOKEN_EXPIRE && !originalRequest.__isRetryRequest) {
