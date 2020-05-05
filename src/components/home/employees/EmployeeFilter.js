@@ -1,30 +1,24 @@
-import React from 'react';
+import React, { Component } from 'react';
 import debounce from 'lodash/debounce';
 
 const FILTER_SEARCH_DELAY = 300;
+const keys = {
+  ENTER: 13,
+};
 
-class EmployeeFilter extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      firstName: '',
-    };
-  }
-
+class EmployeeFilter extends Component {
   onKeyDownHandler = e => {
-    if (e.keyCode === 13) {
-      this.props.onFilter(this.state);
+    if (e.keyCode === keys.ENTER) {
+      this.props.onFilter({ firstName: e.target.value });
     }
   };
 
-  handleChange = debounce(e => {
-    this.setState({ firstName: e }, () => {
-      if (e.length > 2) {
-        this.props.onFilter(this.state);
-      } else if (e.length === 0) {
-        this.props.onFilter({});
-      }
-    });
+  handleChange = debounce(value => {
+    if (value.length > 2) {
+      this.props.onFilter({ firstName: value });
+    } else if (value.length === 0) {
+      this.props.onFilter();
+    }
   }, FILTER_SEARCH_DELAY);
 
   render() {

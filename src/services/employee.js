@@ -4,10 +4,10 @@ import http from 'utils/http';
 /**
  * Fetch all employees.
  *
- * @param options {firstName}
+ * @param options {{firstName: string}}
  * @returns {object}
  */
-export async function fetchEmployees(options) {
+export async function fetchEmployees(options = {}) {
   const employees = await http.get(config.endpoints.employee, {
     params: {
       firstName_like: options.firstName,
