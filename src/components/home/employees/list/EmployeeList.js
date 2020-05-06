@@ -8,6 +8,7 @@ import { handleError } from 'utils/errorHandler';
 
 import * as employee from 'services/employee';
 
+import EmployeeFilter from '../EmployeeFilter';
 import Table from 'components/common/table';
 
 const columns = [
@@ -56,7 +57,7 @@ class EmployeeList extends Component {
   }
 
   componentDidMount() {
-    this.fetchEmployees();
+    this.fetchEmployees({});
   }
 
   setLoading = loading => {
@@ -65,10 +66,10 @@ class EmployeeList extends Component {
     });
   };
 
-  fetchEmployees = async () => {
+  fetchEmployees = async options => {
     try {
       this.setLoading(true);
-      const employees = await employee.fetchEmployees();
+      const employees = await employee.fetchEmployees(options);
 
       this.setState({ employees: employees.data });
       this.setLoading(false);
@@ -102,6 +103,7 @@ class EmployeeList extends Component {
         <div className="container">
           <div className="mb-5x"></div>
           <div className="full-scope-card__content">
+            <EmployeeFilter onFilter={this.fetchEmployees} />
             <Table columns={columns} data={employees} />
           </div>
         </div>
