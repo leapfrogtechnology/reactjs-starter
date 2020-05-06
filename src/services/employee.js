@@ -4,7 +4,7 @@ import http from 'utils/http';
 /**
  * Fetch all employees.
  *
- * @param options {{firstName: string}}
+ * @param {{firstName: string}} options
  * @returns {object}
  */
 export async function fetchEmployees(options = {}) {
