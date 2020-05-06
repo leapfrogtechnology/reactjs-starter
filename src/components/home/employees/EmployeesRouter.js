@@ -4,7 +4,7 @@ import { Switch, Route } from 'react-router-dom';
 
 import * as routes from 'constants/routes';
 
-// import EmployeeAdd from './add';
+import EmployeeAdd from './add';
 import EmployeeList from './list';
 
 const EmployeeRouter = () => {
@@ -12,7 +12,7 @@ const EmployeeRouter = () => {
     <Switch>
       <Route exact path={routes.EMPLOYEES} component={EmployeeList} />
 
-      {/* <Route path={routes.EMPLOYEES_ADD} component={EmployeeAdd} /> */}
+      <Route path={routes.EMPLOYEES_ADD} component={EmployeeAdd} />
     </Switch>
   );
 };

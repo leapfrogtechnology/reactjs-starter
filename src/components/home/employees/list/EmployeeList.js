@@ -79,7 +79,7 @@ class EmployeeList extends Component {
   };
 
   render() {
-    const { employees, loading } = this.state;
+    const { employees } = this.state;
 
     return (
       <div className="cotent-wrap">

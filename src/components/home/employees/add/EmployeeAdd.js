@@ -2,16 +2,16 @@ import React from 'react';
 import { Formik } from 'formik';
 import Alert from 'components/common/alert';
 
-import history from '../../../utils/history';
-import * as toast from '../../../utils/toast';
+import history from 'utils/history';
+import * as toast from 'utils/toast';
 
-import { FormGroup, DateSelector } from '../../common/form';
+import { FormGroup, DateSelector } from 'components/common/form';
+
 import * as routes from 'constants/routes';
-import { EMPLOYEE_ROUTE } from '../../../constants/routes';
 
-import Loading from '../../common/loading/Loading';
+import Loading from 'components/common/loading/Loading';
 
-import employeeSchema from '../../../schemas/EmployeeSchema';
+import employeeSchema from 'schemas/EmployeeSchema';
 
 import * as employeeService from 'services/employee';
 import { handleError } from 'utils/errorHandler';
@@ -45,7 +45,7 @@ class EmployeeForm extends React.Component {
         await employeeService.update(employee);
       }
       this.setLoading(false);
-      history.push(routes.EMPLOYEE_ROUTE);
+      history.push(routes.EMPLOYEES);
     } catch (err) {
       this.setLoading(false);
       handleError(err);
@@ -63,7 +63,7 @@ class EmployeeForm extends React.Component {
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
       preConfirm: async () => {
-        history.push(routes.EMPLOYEE_ROUTE);
+        history.push(routes.EMPLOYEES);
       },
     });
   };
@@ -83,7 +83,7 @@ class EmployeeForm extends React.Component {
   };
 
   redirectToEmployee() {
-    history.push(EMPLOYEE_ROUTE);
+    history.push(routes.EMPLOYEES);
   }
 
   render() {
