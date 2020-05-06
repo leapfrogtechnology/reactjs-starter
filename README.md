@@ -43,7 +43,7 @@ It correctly bundles React in production mode and optimizes the build for the be
 ### `yarn storybook`
 
 Runs a storybook instance of the project.<br>
-Open [http://localhost:9009][http://localhost:9009] to view it in the browser.
+Open [http://localhost:9009](http://localhost:9009) to view it in the browser.
 
 The build is minified and the filenames include the hashes.<br>
 Your app is ready to be deployed!
