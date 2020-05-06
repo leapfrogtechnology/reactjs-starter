@@ -3,7 +3,7 @@ import { Button } from '@storybook/react/demo';
 
 import Alert from '../components/common/alert';
 
-export const AlertContainer = () => (
+export const AlertView = () => (
   <Button
     onClick={() =>
       Alert.fire({
@@ -19,5 +19,5 @@ export const AlertContainer = () => (
 
 export default {
   title: 'Alert',
-  component: AlertContainer,
+  component: AlertView,
 };
