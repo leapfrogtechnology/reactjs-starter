@@ -5,6 +5,7 @@
   "dependencies": {
     "@emotion/core": "^10.0.28",
     "@emotion/styled": "^10.0.27",
+    "@sentry/browser": "^5.15.5",
     "axios": "^0.19.2",
     "classnames": "^2.2.6",
     "formik": "^2.1.4",
@@ -12,6 +13,7 @@
     "husky": "^4.2.5",
     "izitoast": "^1.4.0",
     "lint-staged": "^10.1.4",
+    "lodash": "^4.17.15",
     "moment": "^2.24.0",
     "node-sass": "^4.13.1",
     "pinterpolate": "^0.2.2",
@@ -34,6 +36,12 @@
     "yup": "^0.28.3"
   },
   "devDependencies": {
+    "@storybook/addon-actions": "^5.3.18",
+    "@storybook/addon-links": "^5.3.18",
+    "@storybook/addon-storysource": "^5.3.18",
+    "@storybook/addons": "^5.3.18",
+    "@storybook/preset-create-react-app": "^2.1.1",
+    "@storybook/react": "^5.3.18",
     "concurrently": "^5.1.0",
     "husky": "^4.2.5",
     "json-server": "^0.16.1",
@@ -48,7 +56,9 @@
     "eject": "react-scripts eject",
     "server": "json-server -p 8080 mock-api/db.json --middlewares mock-api/login.js mock-api/user.js",
     "dev": "concurrently \"yarn start\" \"yarn run server\"",
-    "format": "prettier . --write"
+    "format": "prettier . --write",
+    "storybook": "start-storybook -p 9009 -s public",
+    "build-storybook": "build-storybook -s public"
   },
   "husky": {
     "hooks": {

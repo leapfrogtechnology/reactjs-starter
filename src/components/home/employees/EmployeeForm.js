@@ -2,15 +2,15 @@ import React from 'react';
 import { Formik } from 'formik';
 import Alert from 'components/common/alert';
 
-import history from '../../../utils/history';
-import * as toast from '../../../utils/toast';
+import history from 'utils/history';
+import * as toast from 'utils/toast';
 
 import { FormGroup, DateSelector, FormSelect } from '../../common/form';
 import * as routes from 'constants/routes';
 
-import Loading from '../../common/loading/Loading';
+import Loading from 'components/common/loading/Loading';
 
-import employeeSchema from '../../../schemas/EmployeeSchema';
+import employeeSchema from 'schemas/EmployeeSchema';
 
 import * as employeeService from 'services/employee';
 import { handleError } from 'utils/errorHandler';

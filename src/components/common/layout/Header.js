@@ -1,7 +1,7 @@
 import classnames from 'classnames';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { FiChevronDown, FiMenu } from 'react-icons/fi';
+import { FiChevronDown } from 'react-icons/fi';
 
 import { logoFull } from 'assets/images';
 
@@ -26,16 +26,6 @@ const Header = ({ loggedInUser, logout }) => {
                   <Link to={routes.EMPLOYEES} href="/menu1">
                     Employees
                   </Link>
-                </div>
-                <div className="nav__node">
-                  <a href="/" className="nav__link">
-                    Timesheet
-                  </a>
-                </div>
-                <div className="nav__node">
-                  <a href="/" className="nav__link">
-                    Leave
-                  </a>
                 </div>
               </div>
             </div>
