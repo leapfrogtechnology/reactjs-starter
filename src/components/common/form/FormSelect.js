@@ -27,9 +27,7 @@ const FormSelect = props => {
         options={options}
         name={name}
         className={classnames('', { 'child-border-red': error })}
-        value={options.filter(option =>
-          uniqueIdentifier ? option.value[uniqueIdentifier] === value[uniqueIdentifier] : option.value === value
-        )}
+        value={value}
         isDisabled={disabled}
         isClearable={clearable}
         onChange={selectedOption =>
