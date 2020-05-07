@@ -36,6 +36,12 @@
     "yup": "^0.28.3"
   },
   "devDependencies": {
+    "@storybook/addon-actions": "^5.3.18",
+    "@storybook/addon-links": "^5.3.18",
+    "@storybook/addon-storysource": "^5.3.18",
+    "@storybook/addons": "^5.3.18",
+    "@storybook/preset-create-react-app": "^2.1.1",
+    "@storybook/react": "^5.3.18",
     "concurrently": "^5.1.0",
     "husky": "^4.2.5",
     "json-server": "^0.16.1",
@@ -50,7 +56,9 @@
     "eject": "react-scripts eject",
     "server": "json-server -p 8080 mock-api/db.json --middlewares mock-api/login.js mock-api/user.js",
     "dev": "concurrently \"yarn start\" \"yarn run server\"",
-    "format": "prettier . --write"
+    "format": "prettier . --write",
+    "storybook": "start-storybook -p 9009 -s public",
+    "build-storybook": "build-storybook -s public"
   },
   "husky": {
     "hooks": {
