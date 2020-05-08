@@ -4,6 +4,7 @@ import Alert from 'components/common/alert';
 
 import history from 'utils/history';
 import * as toast from 'utils/toast';
+import * as alert from 'utils/alert';
 
 import { FormGroup, DateSelector, FormSelect } from '../../common/form';
 import * as routes from 'constants/routes';
@@ -14,7 +15,7 @@ import employeeSchema from 'schemas/EmployeeSchema';
 
 import * as employeeService from 'services/employee';
 import { handleError } from 'utils/errorHandler';
-import { DESIGNATION_OPTIONS } from '../../../constants/options';
+import { DESIGNATION_OPTIONS } from '../../../constants';
 
 const designationOptions = DESIGNATION_OPTIONS.map(designation => {
   return { label: designation, value: designation };
@@ -50,14 +51,10 @@ class EmployeeForm extends React.Component {
 
   handleCancel = e => {
     e.preventDefault();
-    Alert.fire({
-      icon: 'warning',
+    alert.warning({
       title: 'Cancel this Data',
       text: "You won't be able to revert this!",
-      showCancelButton: true,
-      confirmButtonText: 'Yes, Cancel it!',
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
+      buttonText: 'Yes, Cancel it!',
       preConfirm: async () => {
         this.redirectToEmployee();
       },
