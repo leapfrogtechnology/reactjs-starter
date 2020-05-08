@@ -8,3 +8,6 @@ export const DESIGNATION_OPTIONS = [
   'Software Engineer',
   'Project Manager',
 ];
+
+export const ASC = 'asc';
+export const DESC = 'desc';
