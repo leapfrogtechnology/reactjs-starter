@@ -1,3 +1,3 @@
-import EmployeeAdd from './EmployeeAdd';
+import AddEmployee from './AddEmployee';
 
-export default EmployeeAdd;
+export default AddEmployee;

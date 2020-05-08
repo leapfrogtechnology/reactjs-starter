@@ -11,7 +11,6 @@ const EmployeeRouter = () => {
   return (
     <Switch>
       <Route exact path={routes.EMPLOYEES} component={EmployeeList} />
-
       <Route path={routes.EMPLOYEES_ADD} component={EmployeeAdd} />
     </Switch>
   );
