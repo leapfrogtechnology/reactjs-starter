@@ -1,3 +1,4 @@
 import Table from './Table';
+import TableHeader from './TableHeader';
 
-export default Table;
+export { Table, TableHeader };

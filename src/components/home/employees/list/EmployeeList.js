@@ -3,44 +3,14 @@ import { Link } from 'react-router-dom';
 import React, { Component } from 'react';
 
 import * as routes from 'constants/routes';
+import { ASC, DESC } from 'constants/options';
 
 import { handleError } from 'utils/errorHandler';
 
 import * as employee from 'services/employee';
 
 import EmployeeFilter from '../EmployeeFilter';
-import Table from 'components/common/table';
-
-const columns = [
-  {
-    Header: 'SN.',
-    maxWidth: 100,
-    Cell: props => {
-      return <span>{props.row.index + 1}</span>;
-    },
-  },
-  {
-    Header: 'FirstName',
-    accessor: 'firstName',
-  },
-  {
-    Header: 'LastName',
-    accessor: 'lastName',
-  },
-  {
-    Header: 'Designation',
-    accessor: 'designation',
-  },
-  {
-    Header: 'Date of birth',
-    accessor: 'dob',
-    Cell: props => <span>{moment(props.value).format('LL')}</span>,
-  },
-  {
-    Header: 'Address',
-    accessor: 'address',
-  },
-];
+import { Table, TableHeader } from 'components/common/table';
 
 /**
  *
@@ -53,17 +23,99 @@ class EmployeeList extends Component {
     this.state = {
       employees: [],
       loading: false,
+      sortOptions: {
+        column: 'firstName',
+        order: ASC,
+      },
     };
   }
 
+  columns = [
+    {
+      Header: 'SN.',
+      maxWidth: 100,
+      Cell: props => {
+        return <span>{props.row.index + 1}</span>;
+      },
+    },
+    {
+      Header: () => (
+        <TableHeader
+          sortOptions={this.state.sortOptions}
+          id="firstName"
+          headerValue="First Name"
+          onClick={this.setSortOptions}
+        />
+      ),
+      accessor: 'firstName',
+    },
+    {
+      Header: () => (
+        <TableHeader
+          sortOptions={this.state.sortOptions}
+          id="lastName"
+          headerValue="Last Name"
+          onClick={this.setSortOptions}
+        />
+      ),
+      accessor: 'lastName',
+    },
+    {
+      Header: () => (
+        <TableHeader
+          sortOptions={this.state.sortOptions}
+          id="designation"
+          headerValue="Designation"
+          onClick={this.setSortOptions}
+        />
+      ),
+      accessor: 'designation',
+    },
+    {
+      Header: () => (
+        <TableHeader
+          sortOptions={this.state.sortOptions}
+          id="dob"
+          headerValue="Date of Birth"
+          onClick={this.setSortOptions}
+        />
+      ),
+      accessor: 'dob',
+      Cell: props => <span>{moment(props.value).format('LL')}</span>,
+    },
+    {
+      Header: () => (
+        <TableHeader
+          sortOptions={this.state.sortOptions}
+          id="address"
+          headerValue="Address"
+          onClick={this.setSortOptions}
+        />
+      ),
+      accessor: 'address',
+    },
+  ];
+
   componentDidMount() {
-    this.fetchEmployees({});
+    this.fetchEmployees(this.state.sortOptions);
   }
 
   setLoading = loading => {
     this.setState({
       loading,
     });
+  };
+
+  setSortOptions = id => {
+    if (this.state.sortOptions.column === id) {
+      let toggledOrder = this.state.sortOptions.order === ASC ? DESC : ASC;
+      this.setState({ sortOptions: { ...this.state.sortOptions, order: toggledOrder } }, () => {
+        this.fetchEmployees(this.state.sortOptions);
+      });
+    } else
+      this.setState({ sortOptions: { column: id, order: ASC } }, () => {
+        this.fetchEmployees(this.state.sortOptions);
+      });
   };
 
   fetchEmployees = async options => {
@@ -104,7 +156,7 @@ class EmployeeList extends Component {
           <div className="mb-5x"></div>
           <div className="full-scope-card__content">
             <EmployeeFilter onFilter={this.fetchEmployees} />
-            <Table columns={columns} data={employees} />
+            <Table columns={this.columns} data={employees} />
           </div>
         </div>
       </div>

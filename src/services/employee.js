@@ -11,6 +11,8 @@ export async function fetchEmployees(options = {}) {
   const employees = await http.get(config.endpoints.employee, {
     params: {
       firstName_like: options.firstName,
+      _sort: options.column,
+      _order: options.order,
     },
   });
 
