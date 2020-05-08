@@ -277,3 +277,27 @@
     }
   }
 }
+
+.login {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  @include e(company-logo) {
+    width: 150px;
+    margin: getSpacing('5x') auto;
+  }
+
+  @include e(form) {
+    padding: getSpacing('6x') getSpacing('5x');
+    background-color: getColor('white.base');
+  }
+
+  @include e(form-title) {
+    color: getColor('secondary.base');
+    margin-bottom: getSpacing('5x');
+    text-align: center;
+    @include getHeaderFontSize('h3');
+  }
+}
