@@ -1,0 +1,50 @@
+$input-border-radius: 2px;
+.lf-input-wrap {
+  margin-bottom: getSpacing('5x');
+}
+
+.lf-input {
+  border: 1px solid getColor('grey.20');
+  border-radius: $input-border-radius;
+  padding: getSpacing('2x') getSpacing('3x');
+  width: 100%;
+  font-size: getFontSize('body1');
+  background-color: getColor('white.base');
+  color: getColor('grey.80');
+  &::placeholder {
+    font-size: getFontSize('body1');
+    color: getColor('grey.40');
+    text-transform: capitalize;
+  }
+  &:focus {
+    border: 1px solid getColor('tertiary-blue.60');
+  }
+
+  @include m(disabled) {
+    background-color: getColor('grey.10');
+    color: getColor('grey.20');
+  }
+
+  @include m(error) {
+    border: 1px solid getColor('tertiary-red.60');
+  }
+
+  @include e(helper) {
+    color: getColor('tertiary-red.60');
+    font-size: getFontSize('small');
+    margin-top: getSpacing('1x');
+  }
+
+  @include e(label) {
+    display: block;
+    font-size: getFontSize('small');
+    line-height: 1.3;
+    color: getColor('grey.50');
+    margin-bottom: getSpacing('1x');
+    text-transform: capitalize;
+
+    @include m(required) {
+      color: getColor('tertiary-red.60');
+    }
+  }
+}
