@@ -5,7 +5,7 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 import * as routes from 'constants/routes';
 
 import Employees from './employees';
-import NotFound from 'components/NotFound';
+import _404 from 'components/common/errors/_404';
 
 const HomeRouter = () => {
   return (
@@ -14,7 +14,7 @@ const HomeRouter = () => {
 
       <Route path={routes.EMPLOYEES} component={Employees} />
 
-      <Route path="*" component={NotFound} />
+      <Route path="*" component={_404} />
     </Switch>
   );
 };
