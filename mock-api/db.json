@@ -23,6 +23,78 @@
       "address": "test",
       "dob": "2020-04-29",
       "id": 3
+    },
+    {
+      "firstName": "Test1",
+      "lastName": "TEst1",
+      "designation": "test1",
+      "address": "test1",
+      "dob": "2020-04-29",
+      "id": 4
+    },
+    {
+      "firstName": "Ram",
+      "lastName": "Hari",
+      "designation": "SE",
+      "address": "Pokhara",
+      "dob": "2020-04-26",
+      "id": 5
+    },
+    {
+      "firstName": "Sita",
+      "lastName": "Kumari",
+      "designation": "SSE",
+      "address": "Lumbini",
+      "dob": "2020-04-29",
+      "id": 6
+    },
+    {
+      "firstName": "Test4",
+      "lastName": "TEst4",
+      "designation": "test4",
+      "address": "test4",
+      "dob": "2020-04-29",
+      "id": 7
+    },
+    {
+      "firstName": "Test5",
+      "lastName": "TEst5",
+      "designation": "test5",
+      "address": "test5",
+      "dob": "2020-04-29",
+      "id": 8
+    },
+    {
+      "firstName": "Test6",
+      "lastName": "TEst6",
+      "designation": "test6",
+      "address": "test6",
+      "dob": "2020-04-29",
+      "id": 9
+    },
+    {
+      "firstName": "Test7",
+      "lastName": "TEst7",
+      "designation": "test7",
+      "address": "test7",
+      "dob": "2020-04-29",
+      "id": 10
+    },
+    {
+      "firstName": "Keshav",
+      "lastName": "Lal",
+      "designation": "ASE",
+      "address": "birgunj",
+      "dob": "2020-04-29",
+      "id": 11
+    },
+    {
+      "firstName": "Test9",
+      "lastName": "TEst9",
+      "designation": "test9",
+      "address": "test9",
+      "dob": "2020-04-29",
+      "id": 12
     }
   ]
 }
