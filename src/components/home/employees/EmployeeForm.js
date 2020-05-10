@@ -2,34 +2,31 @@ import React from 'react';
 import { Formik } from 'formik';
 import Alert from 'components/common/alert';
 
-import history from '../../../utils/history';
-import * as toast from '../../../utils/toast';
+import history from 'utils/history';
+import * as toast from 'utils/toast';
+import * as alert from 'utils/alert';
 
-import { FormGroup, DateSelector } from '../../common/form';
+import { FormGroup, DateSelector, FormSelect } from '../../common/form';
 import * as routes from 'constants/routes';
-import { EMPLOYEE_ROUTE } from '../../../constants/routes';
 
-import Loading from '../../common/loading/Loading';
+import Loading from 'components/common/loading/Loading';
 
-import employeeSchema from '../../../schemas/EmployeeSchema';
+import employeeSchema from 'schemas/EmployeeSchema';
 
 import * as employeeService from 'services/employee';
 import { handleError } from 'utils/errorHandler';
+import { DESIGNATION_OPTIONS } from '../../../constants';
+
+const designationOptions = DESIGNATION_OPTIONS.map(designation => {
+  return { label: designation, value: designation };
+});
 
 class EmployeeForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      employee: {},
       loading: false,
-      id: props.match.params.id,
     };
-  }
-
-  componentDidMount() {
-    if (this.state.id) {
-      this.fetchById();
-    }
   }
 
   setLoading = loading => {
@@ -39,13 +36,13 @@ class EmployeeForm extends React.Component {
   handleSubmit = async employee => {
     try {
       this.setLoading(true);
-      if (!this.state.id) {
+      if (!this.props.id) {
         await employeeService.save(employee);
       } else {
         await employeeService.update(employee);
       }
       this.setLoading(false);
-      history.push(routes.EMPLOYEE_ROUTE);
+      this.redirectToEmployee();
     } catch (err) {
       this.setLoading(false);
       handleError(err);
@@ -54,16 +51,12 @@ class EmployeeForm extends React.Component {
 
   handleCancel = e => {
     e.preventDefault();
-    Alert.fire({
-      icon: 'warning',
+    alert.warning({
       title: 'Cancel this Data',
       text: "You won't be able to revert this!",
-      showCancelButton: true,
-      confirmButtonText: 'Yes, Cancel it!',
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
+      buttonText: 'Yes, Cancel it!',
       preConfirm: async () => {
-        history.push(routes.EMPLOYEE_ROUTE);
+        this.redirectToEmployee();
       },
     });
   };
@@ -83,17 +76,13 @@ class EmployeeForm extends React.Component {
   };
 
   redirectToEmployee() {
-    history.push(EMPLOYEE_ROUTE);
+    history.push(routes.EMPLOYEES);
   }
 
   render() {
+    let { data } = this.props;
     return (
-      <Formik
-        enableReinitialize
-        initialValues={this.state.employee}
-        onSubmit={this.handleSubmit}
-        validationSchema={employeeSchema}
-      >
+      <Formik enableReinitialize initialValues={data} onSubmit={this.handleSubmit} validationSchema={employeeSchema}>
         {props => {
           const { values, touched, errors, dirty, isSubmitting, handleChange, handleBlur, handleSubmit } = props;
           return (
@@ -124,14 +113,14 @@ class EmployeeForm extends React.Component {
                             <FormGroup
                               name="lastName"
                               label="Last Name"
-                              isMandatory={false}
+                              isMandatory={true}
                               value={values.lastName}
                               error={touched.lastName && errors.lastName}
                               handleBlur={handleBlur}
                               handleChange={handleChange}
                               placeholder="Last Name"
                             />
-                            <FormGroup
+                            <FormSelect
                               name="designation"
                               label="Designation"
                               isMandatory={true}
@@ -139,7 +128,7 @@ class EmployeeForm extends React.Component {
                               handleBlur={handleBlur}
                               error={touched.designation && errors.designation}
                               handleChange={handleChange}
-                              placeholder="Designation"
+                              options={designationOptions}
                             />
 
                             <FormGroup

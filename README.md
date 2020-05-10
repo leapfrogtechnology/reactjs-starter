@@ -19,6 +19,7 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 Mock server will run at [http://localhost:8080](http://localhost:8080).
 
 Default login:
+
 - email: vyaguta@vyaguta.com
 - password: vyaguta
 
@@ -41,3 +42,8 @@ It correctly bundles React in production mode and optimizes the build for the be
 
 The build is minified and the filenames include the hashes.<br>
 Your app is ready to be deployed!
+
+### `yarn storybook`
+
+Runs a storybook instance of the project.<br>
+Open [http://localhost:9009](http://localhost:9009) to view it in the browser.

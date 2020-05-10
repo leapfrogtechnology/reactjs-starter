@@ -1,3 +1,4 @@
+import 'react-datepicker/dist/react-datepicker.css';
 import React from 'react';
 import moment from 'moment';
 import PropTypes from 'prop-types';

@@ -10,6 +10,7 @@ import * as employee from 'services/employee';
 
 import * as pagination from 'services/pagination';
 
+import EmployeeFilter from '../EmployeeFilter';
 import Table from 'components/common/table';
 
 import Pagination from 'components/common/pagination';
@@ -112,6 +113,7 @@ class EmployeeList extends Component {
         <div className="container">
           <div className="mb-5x"></div>
           <div className="full-scope-card__content">
+            <EmployeeFilter onFilter={this.fetchEmployees} />
             <Table columns={columns} data={employees} />
           </div>
         </div>

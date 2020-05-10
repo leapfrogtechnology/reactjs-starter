@@ -10,6 +10,7 @@
   outline: none;
   display: flex;
   align-items: center;
+  justify-content: center;
   font-weight: getFontWeight('semibold');
   flex-shrink: 0;
   &:active {
