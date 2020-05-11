@@ -8,8 +8,12 @@ import { handleError } from 'utils/errorHandler';
 
 import * as employee from 'services/employee';
 
+import * as pagination from 'services/pagination';
+
 import EmployeeFilter from '../EmployeeFilter';
 import Table from 'components/common/table';
+
+import Pagination from 'components/common/pagination';
 
 const columns = [
   {
@@ -53,11 +57,14 @@ class EmployeeList extends Component {
     this.state = {
       employees: [],
       loading: false,
+      limit: 1,
+      page: 1,
+      employeesCount: 0,
     };
   }
 
   componentDidMount() {
-    this.fetchEmployees({});
+    this.fetchEmployees(this.state.page, {});
   }
 
   setLoading = loading => {
@@ -66,12 +73,13 @@ class EmployeeList extends Component {
     });
   };
 
-  fetchEmployees = async options => {
+  fetchEmployees = async (page, options = {}) => {
+    const { limit } = this.state;
     try {
       this.setLoading(true);
-      const employees = await employee.fetchEmployees(options);
+      const employees = await pagination.fetchPaginationData(routes.EMPLOYEES, page, limit, options);
 
-      this.setState({ employees: employees.data });
+      this.setState({ employees: employees.data, page, employeesCount: employees.headers['x-total-count'] });
       this.setLoading(false);
     } catch (err) {
       this.setLoading(false);
@@ -80,7 +88,9 @@ class EmployeeList extends Component {
   };
 
   render() {
-    const { employees } = this.state;
+    const { employees, employeesCount, limit, page } = this.state;
+    const pageCount = Math.ceil(employeesCount / limit);
+    const pages = Array.from({ length: pageCount }, (_, i) => i + 1);
 
     return (
       <div className="cotent-wrap">
@@ -103,9 +113,14 @@ class EmployeeList extends Component {
         <div className="container">
           <div className="mb-5x"></div>
           <div className="full-scope-card__content">
-            <EmployeeFilter onFilter={this.fetchEmployees} />
+            <EmployeeFilter onFilter={this.fetchEmployees} page={page} />
             <Table columns={columns} data={employees} />
           </div>
+        </div>
+
+        <div className="container">
+          <div className="mb-5x"></div>
+          <Pagination pages={pages} onPageChange={this.fetchEmployees} page={page} visiblePageCount={5} />
         </div>
       </div>
     );
