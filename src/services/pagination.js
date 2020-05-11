@@ -11,11 +11,14 @@ import queryString from 'query-string';
  * @param {int} limit
  * @returns {Promise}
  */
-export async function fetchPaginationData(url, page, limit) {
+export async function fetchPaginationData(url, page, limit, options) {
   const urlWithQueryString = url + '?' + queryString.stringify({ _page: page, _limit: limit });
 
-  // const {data} = await http.get(urlWithQueryString);
-  const data = await http.get(urlWithQueryString);
+  const data = await http.get(urlWithQueryString, {
+    params: {
+      firstName_like: options.firstName,
+    },
+  });
 
   return data;
 }
