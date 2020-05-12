@@ -9,8 +9,23 @@ import history from 'utils/history';
 
 import * as employee from 'services/employee';
 
-import EmployeeFilter from '../EmployeeFilter';
+import Alert from 'components/common/alert';
 import Table from 'components/common/table';
+import EmployeeFilter from 'components/home/employees/EmployeeFilter';
+
+// Custom Cell for Edit/Delete Functions
+const ActionCell = ({ title, value, handleFunc }) => {
+  return (
+    <button
+      style={{ margin: 4 }}
+      onClick={() => {
+        handleFunc(value);
+      }}
+    >
+      {title}
+    </button>
+  );
+};
 
 const columns = [
   {
@@ -40,6 +55,16 @@ const columns = [
   {
     Header: 'Address',
     accessor: 'address',
+  },
+  {
+    Header: '',
+    accessor: 'id',
+    Cell: props => (
+      <span>
+        <ActionCell title="Edit" value={props.value} handleFunc={props.handleUpdate} />
+        <ActionCell title="Delete" value={props.value} handleFunc={props.handleDelete} />
+      </span>
+    ),
   },
 ];
 
@@ -84,6 +109,32 @@ class EmployeeList extends Component {
     history.push(`${routes.EMPLOYEES}/edit/${id}`);
   };
 
+  handleDelete = id => {
+    Alert.fire({
+      icon: 'warning',
+      title: 'Are you sure?',
+      text: `Do you really want to delete ${id}`,
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Delete',
+    }).then(async result => {
+      if (result.value) {
+        try {
+          let resp = await employee.deleteById(id);
+          if (resp.status === 200) {
+            Alert.fire({
+              title: 'Deleted!',
+            });
+            this.fetchEmployees();
+          }
+        } catch (err) {
+          handleError(err);
+        }
+      }
+    });
+  };
+
   render() {
     const { employees } = this.state;
 
@@ -109,7 +160,12 @@ class EmployeeList extends Component {
           <div className="mb-5x"></div>
           <div className="full-scope-card__content">
             <EmployeeFilter onFilter={this.fetchEmployees} />
-            <Table columns={columns} data={employees} onRowClick={this.redirectToEditPage} />
+            <Table
+              columns={columns}
+              data={employees}
+              handleUpdate={this.redirectToEditPage}
+              handleDelete={this.handleDelete}
+            />
           </div>
         </div>
       </div>
