@@ -5,6 +5,7 @@ import React, { Component } from 'react';
 import * as routes from 'constants/routes';
 
 import { handleError } from 'utils/errorHandler';
+import history from 'utils/history';
 
 import * as employee from 'services/employee';
 
@@ -79,6 +80,10 @@ class EmployeeList extends Component {
     }
   };
 
+  redirectToEditPage = id => {
+    history.push(`${routes.EMPLOYEES}/edit/${id}`);
+  };
+
   render() {
     const { employees } = this.state;
 
@@ -104,7 +109,7 @@ class EmployeeList extends Component {
           <div className="mb-5x"></div>
           <div className="full-scope-card__content">
             <EmployeeFilter onFilter={this.fetchEmployees} />
-            <Table columns={columns} data={employees} />
+            <Table columns={columns} data={employees} onRowClick={this.redirectToEditPage} />
           </div>
         </div>
       </div>

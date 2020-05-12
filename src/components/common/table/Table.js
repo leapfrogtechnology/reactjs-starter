@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import { useTable, useFlexLayout } from 'react-table';
 
-const Table = ({ columns, data }) => {
+const Table = ({ columns, data, onRowClick }) => {
   const getStyles = (props, align = 'left') => [
     props,
     {
@@ -56,7 +56,13 @@ const Table = ({ columns, data }) => {
           {rows.map(row => {
             prepareRow(row);
             return (
-              <div {...row.getRowProps()} className="lf-table__row">
+              <div
+                {...row.getRowProps()}
+                className="lf-table__row"
+                onClick={() => {
+                  onRowClick(row.original.id);
+                }}
+              >
                 {row.cells.map(cell => {
                   return (
                     <div {...cell.getCellProps(cellProps)} className="lf-table__col">

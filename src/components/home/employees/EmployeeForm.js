@@ -84,7 +84,18 @@ class EmployeeForm extends React.Component {
     return (
       <Formik enableReinitialize initialValues={data} onSubmit={this.handleSubmit} validationSchema={employeeSchema}>
         {props => {
-          const { values, touched, errors, dirty, isSubmitting, handleChange, handleBlur, handleSubmit } = props;
+          const {
+            values,
+            touched,
+            errors,
+            dirty,
+            isSubmitting,
+            handleChange,
+            handleBlur,
+            handleSubmit,
+            setFieldValue,
+            setFieldError,
+          } = props;
           return (
             <main>
               <div className="container">
@@ -124,10 +135,14 @@ class EmployeeForm extends React.Component {
                               name="designation"
                               label="Designation"
                               isMandatory={true}
-                              value={values.designation}
+                              value={values.designation_value}
                               handleBlur={handleBlur}
                               error={touched.designation && errors.designation}
-                              handleChange={handleChange}
+                              handleChange={e => {
+                                setFieldValue('designation', e.target.value);
+                                setFieldValue('designation_value', { label: e.target.value, value: e.target.value });
+                                setFieldError('designation', '');
+                              }}
                               options={designationOptions}
                             />
 
@@ -157,7 +172,7 @@ class EmployeeForm extends React.Component {
                               disabled={!dirty || isSubmitting}
                               className="btn btn--primary f-left card-button mr-10"
                             >
-                              {isSubmitting ? <Loading /> : !this.state.id ? 'Create' : 'Update'}
+                              {isSubmitting ? <Loading /> : !this.props.id ? 'Create' : 'Update'}
                             </button>
 
                             <button type="button" className="btn btn--danger mr-10 f-left" onClick={this.handleCancel}>
