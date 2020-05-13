@@ -1,0 +1,23 @@
+{
+  "components": {
+    "login": {
+      "sign_in": {
+        "title": "Sign In"
+      }
+    },
+    "login_form": {
+      "label": {
+        "email": "Email",
+        "password": "Password"
+      },
+      "placeholder": {
+        "email": "Your Email Address",
+        "password": "Your Password"
+      }
+    },
+    "header": {
+      "employees": "Employees",
+      "logout": "Log Out"
+    }
+  }
+}
