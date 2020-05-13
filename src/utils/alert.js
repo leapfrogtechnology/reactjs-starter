@@ -12,3 +12,9 @@ export function warning({ title, text, buttonText, preConfirm }) {
     preConfirm,
   });
 }
+
+export function info({ title }) {
+  Alert.fire({
+    title: title,
+  });
+}

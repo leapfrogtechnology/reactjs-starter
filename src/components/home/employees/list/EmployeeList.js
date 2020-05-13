@@ -4,8 +4,9 @@ import React, { Component } from 'react';
 
 import * as routes from 'constants/routes';
 
-import { handleError } from 'utils/errorHandler';
 import history from 'utils/history';
+import * as alert from 'utils/alert';
+import { handleError } from 'utils/errorHandler';
 
 import * as employee from 'services/employee';
 
@@ -110,28 +111,23 @@ class EmployeeList extends Component {
   };
 
   handleDelete = id => {
-    Alert.fire({
-      icon: 'warning',
+    alert.warning({
       title: 'Are you sure?',
       text: `Do you really want to delete ${id}`,
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Delete',
-    }).then(async result => {
-      if (result.value) {
+      buttonText: 'Delete',
+      preConfirm: async () => {
         try {
           let resp = await employee.deleteById(id);
           if (resp.status === 200) {
-            Alert.fire({
-              title: 'Deleted!',
+            alert.info({
+              title: 'Deleted',
             });
             this.fetchEmployees();
           }
         } catch (err) {
           handleError(err);
         }
-      }
+      },
     });
   };
 
