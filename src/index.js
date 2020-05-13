@@ -11,6 +11,8 @@ import App from './components/App';
 
 import init from './init';
 
+import 'utils/i18n';
+
 init();
 
 ReactDOM.render(

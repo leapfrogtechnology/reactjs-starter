@@ -2,6 +2,7 @@ import classnames from 'classnames';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FiChevronDown } from 'react-icons/fi';
+import { useTranslation } from 'react-i18next';
 
 import { logoFull } from 'assets/images';
 
@@ -11,6 +12,7 @@ import { withAuthState } from 'components/hoc/auth';
 
 const Header = ({ loggedInUser, logout }) => {
   const [isMenuShown, setIsMenuShown] = useState(false);
+  const { t } = useTranslation();
 
   return (
     <>
@@ -24,7 +26,7 @@ const Header = ({ loggedInUser, logout }) => {
               <div className="nav">
                 <div className="nav__node">
                   <Link to={routes.EMPLOYEES} href="/menu1">
-                    Employees
+                    {t('components.header.employees')}
                   </Link>
                 </div>
               </div>
@@ -42,7 +44,7 @@ const Header = ({ loggedInUser, logout }) => {
                 <div className={classnames('dropmenu', { show: isMenuShown })}>
                   <div className="dropmenu__node">
                     <a href="#" title="Logout" onClick={logout}>
-                      Log Out
+                      {t('components.header.logout')}
                     </a>
                   </div>
                 </div>
