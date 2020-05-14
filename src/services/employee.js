@@ -59,7 +59,5 @@ export async function fetchById(id) {
  * @param {string} id
  */
 export async function deleteById(id) {
-  const response = await http.delete(`${config.endpoints.employee}/${id}`);
-
-  return response;
+  return await http.delete(`${config.endpoints.employee}/${id}`);
 }
