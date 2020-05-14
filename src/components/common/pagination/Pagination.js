@@ -1,15 +1,20 @@
 import React, { Component } from 'react';
-import _ from 'lodash';
+import _range from 'lodash/range';
 
 const PageButtonComponent = props => <button {...props}>{props.children}</button>;
 
 class Pagination extends Component {
-  state = { visiblePages: [] };
+  constructor() {
+    super();
+    this.state = { visiblePages: [] };
+  }
 
-  componentWillReceiveProps(nextProps) {
-    if (this.props.pages !== nextProps.pages) {
+  componentDidUpdate(prevProps) {
+    const { pages, page, visiblePageCount } = this.props;
+
+    if (prevProps.pages != pages) {
       this.setState({
-        visiblePages: this.getVisiblePages(nextProps.page, nextProps.pages.length, nextProps.visiblePageCount),
+        visiblePages: this.getVisiblePages(page, pages.length, visiblePageCount),
       });
     }
   }
@@ -38,19 +43,19 @@ class Pagination extends Component {
     let visiblePages = [];
 
     if (total <= visiblePageCount) {
-      visiblePages = _.range(1, total + 1);
+      visiblePages = _range(1, total + 1);
     } else {
       const offset = Math.floor(visiblePageCount / 2);
       if (page % visiblePageCount >= 0 && page > visiblePageCount - 1 && page + 2 < total) {
         if (visiblePageCount % 2 == 0) {
-          visiblePages = _.range(page - offset, page + offset);
+          visiblePages = _range(page - offset, page + offset);
         } else {
-          visiblePages = _.range(page - offset, page + offset + 1);
+          visiblePages = _range(page - offset, page + offset + 1);
         }
       } else if (page % visiblePageCount >= 0 && page > visiblePageCount - 1 && page + 2 >= total) {
-        visiblePages = _.range(total - visiblePageCount + 1, total + 1);
+        visiblePages = _range(total - visiblePageCount + 1, total + 1);
       } else {
-        visiblePages = _.range(1, visiblePageCount + 2);
+        visiblePages = _range(1, visiblePageCount + 2);
       }
     }
 
@@ -67,7 +72,7 @@ class Pagination extends Component {
     return (
       <React.Fragment>
         <PageButtonComponent
-          style={{ ...this.pageButtonStyle, cursor: page === 1 ? 'not-allowed' : 'auto' }}
+          style={{ ...this.pageButtonStyle, cursor: page === 1 ? 'not-allowed' : 'pointer' }}
           onClick={() => onPageChange(1)}
           disabled={page === 1}
         >
@@ -76,7 +81,7 @@ class Pagination extends Component {
 
         <PageButtonComponent
           onClick={() => onPageChange(page - 1)}
-          style={{ ...this.pageButtonStyle, cursor: page === 1 ? 'not-allowed' : 'auto' }}
+          style={{ ...this.pageButtonStyle, cursor: page === 1 ? 'not-allowed' : 'pointer' }}
           disabled={page === 1}
         >
           Previous
@@ -88,7 +93,7 @@ class Pagination extends Component {
             onClick={() => onPageChange(pageNumber)}
             style={{
               ...this.pageButtonStyle,
-              cursor: array[index - 1] + 2 <= pageNumber ? 'not-allowed' : 'auto',
+              cursor: array[index - 1] + 2 <= pageNumber ? 'not-allowed' : 'pointer',
               backgroundColor: page === pageNumber ? '#999999' : '#ffffff',
             }}
             disabled={array[index - 1] + 2 <= pageNumber}
@@ -99,14 +104,14 @@ class Pagination extends Component {
 
         <PageButtonComponent
           onClick={() => onPageChange(page + 1)}
-          style={{ ...this.pageButtonStyle, cursor: page === pages.length ? 'not-allowed' : 'auto' }}
+          style={{ ...this.pageButtonStyle, cursor: page === pages.length ? 'not-allowed' : 'pointer' }}
           disabled={page === pages.length}
         >
           Next
         </PageButtonComponent>
 
         <PageButtonComponent
-          style={{ ...this.pageButtonStyle, cursor: page === pages.length ? 'not-allowed' : 'auto' }}
+          style={{ ...this.pageButtonStyle, cursor: page === pages.length ? 'not-allowed' : 'pointer' }}
           onClick={() => onPageChange(pages.length)}
           disabled={page === pages.length}
         >
