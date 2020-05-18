@@ -5,3 +5,29 @@
 // Cleaning up the code in _shame.scss should be done at spare time. Find out whose code it is by
 // using: $ git blame _shame.scss
 // ==========================================================================
+
+div {
+  &.SingleDatePicker_picker {
+    z-index: 99;
+  }
+  & .DateInput_input {
+    border: 1px solid getColor('grey.20');
+    border-radius: 2px;
+    padding: getSpacing('2x') getSpacing('3x');
+    width: 100%;
+    font-size: getFontSize('body1');
+    background-color: getColor('white.base');
+    color: getColor('grey.80');
+    font-weight: normal;
+    line-height: normal;
+    &::placeholder {
+      font-size: getFontSize('body1');
+      color: getColor('grey.40');
+      text-transform: capitalize;
+      font-weight: normal;
+    }
+    &:focus {
+      border: 1px solid getColor('tertiary-blue.60');
+    }
+  }
+}
