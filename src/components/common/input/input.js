@@ -1,6 +1,12 @@
 import moment from 'moment';
 import classnames from 'classnames';
 import React, { Component } from 'react';
+import { SingleDatePicker } from 'react-dates';
+
+import 'react-dates/initialize';
+import 'react-dates/lib/css/_datepicker.css';
+
+import DropDown from 'components/common/dropDown';
 
 class Input extends Component {
   constructor(props) {
@@ -10,7 +16,6 @@ class Input extends Component {
       calendarFocused: false,
     };
   }
-
   onDateChange = (name, date) => {
     if (date && date._d) {
       const changedDate = new Date(date._d).toISOString();
@@ -20,6 +25,10 @@ class Input extends Component {
 
       this.props.onInputFieldChange(name, dateOnly);
     }
+  };
+
+  onFocusChange = ({ focused }) => {
+    this.setState(() => ({ calendarFocused: focused }));
   };
 
   render() {
@@ -53,6 +62,43 @@ class Input extends Component {
           disabled={disabled}
           onBlur={this.props.onBlur}
           defaultValue={this.props.initialValue}
+        />
+      );
+    }
+
+    if (type && type === 'dropdown') {
+      inputView = (
+        <DropDown
+          name={id}
+          isSearchable={true}
+          isDisabled={disabled}
+          options={this.props.options}
+          defaultValue={this.props.initialValue ? this.props.initialValue : 'Select...'}
+          onChange={selectedOption =>
+            this.props.onChange({ target: { name: name, value: selectedOption ? selectedOption.value : null } })
+          }
+        />
+      );
+    }
+
+    if (type && type === 'date') {
+      inputView = (
+        <SingleDatePicker
+          id={id}
+          date={this.state.date}
+          placeholder={placeholder}
+          onDateChange={date => this.onDateChange(id, date)}
+          focused={this.state.calendarFocused}
+          onFocusChange={this.onFocusChange}
+          numberOfMonths={1}
+          isOutsideRange={() => false}
+          displayFormat={'MMM DD, YYYY'}
+          hideKeyboardShortcutsPanel
+          block
+          openDirection={'up'}
+          withPortal={true}
+          noBorder={true}
+          disabled={disabled}
         />
       );
     }

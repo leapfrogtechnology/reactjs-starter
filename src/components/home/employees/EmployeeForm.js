@@ -9,6 +9,7 @@ import * as alert from 'utils/alert';
 import { FormGroup, DateSelector, FormSelect } from '../../common/form';
 import * as routes from 'constants/routes';
 
+import Input from 'components/common/input';
 import Loading from 'components/common/loading/Loading';
 
 import employeeSchema from 'schemas/EmployeeSchema';
@@ -98,20 +99,104 @@ class EmployeeForm extends React.Component {
           } = props;
           return (
             <main>
-              <div className="container">
-                <div className="full-scope-card">
-                  <div className="full-scope-card__header">
-                    <div className="table-header">
-                      <h3>Employee Form</h3>
+              <div className="container mt-5x">
+                <div className="card card--elevated">
+                  <div className="title-bar__contents">
+                    <div className="title-bar__left">
+                      <h4 className="title-bar__title">Employee Form</h4>
                     </div>
                   </div>
+                </div>
+                <div className="card card--elevated mt-5x">
                   <form onSubmit={handleSubmit}>
-                    <div className="full-scope-card__content">
+                    <div className="form-container p-5x">
                       <div className="form-wrap">
                         <div className="form-wrap__row form-wrap__row--no-margin">
                           <div className="form-wrap__col col-sm-12">
                             <div className="form-group"></div>
-                            <FormGroup
+                            <div className="row">
+                              <div className="col-12-sm col-6-md col-6-lg">
+                                <Input
+                                  id="firstName"
+                                  labelText="First Name"
+                                  name="firstName"
+                                  required
+                                  placeholder="First Name"
+                                  onChange={handleChange}
+                                  onBlur={handleBlur}
+                                  initialValue={values.firstName}
+                                  error={touched.firstName && errors.firstName ? errors.firstName : false}
+                                />
+                              </div>
+                              <div className="col-12-sm col-6-md col-6-lg">
+                                <Input
+                                  id="LastName"
+                                  labelText="Last Name"
+                                  name="lastName"
+                                  required
+                                  placeholder="Last Name"
+                                  onChange={handleChange}
+                                  onBlur={handleBlur}
+                                  initialValue={values.lastName}
+                                  error={touched.lastName && errors.lastName ? errors.lastName : false}
+                                />
+                              </div>
+                            </div>
+
+                            <div className="row">
+                              <div className="col-12-sm col-6-md col-6-lg">
+                                <Input
+                                  id="designation"
+                                  labelText="Designation"
+                                  name="designation"
+                                  required
+                                  type="dropdown"
+                                  options={designationOptions}
+                                  onChange={e => {
+                                    setFieldValue('designation', e.target.value);
+                                    setFieldValue('designation_value', {
+                                      label: e.target.value,
+                                      value: e.target.value,
+                                    });
+                                    setFieldError('designation', '');
+                                  }}
+                                  onBlur={handleBlur}
+                                  initialValue={values.firstName}
+                                  error={touched.firstName && errors.firstName ? errors.firstName : false}
+                                />
+                              </div>
+                              <div className="col-12-sm col-6-md col-6-lg">
+                                <Input
+                                  id="address"
+                                  labelText="Address"
+                                  name="address"
+                                  required
+                                  placeholder="Address"
+                                  onChange={handleChange}
+                                  onBlur={handleBlur}
+                                  initialValue={values.address}
+                                  error={touched.address && errors.address ? errors.address : false}
+                                />
+                              </div>
+                            </div>
+                            <div className="row">
+                              <div className="col-12-sm col-6-md col-6-lg">
+                                <Input
+                                  id="dob"
+                                  labelText="Date of Birth"
+                                  required
+                                  placeholder={'DD MM YYYY'}
+                                  type="date"
+                                  onInputFieldChange={handleChange}
+                                  onBlur={handleBlur}
+                                  initialValue={values.dob}
+                                  error={touched.dob && errors.dob ? errors.dob : false}
+                                  placeholder="Pick a birth date"
+                                  disabled={false}
+                                />
+                              </div>
+                            </div>
+                            {/* <FormGroup
                               name="firstName"
                               label="First Name"
                               isMandatory={true}
@@ -165,19 +250,28 @@ class EmployeeForm extends React.Component {
                               value={values.dob}
                               error={touched.dob && errors.dob}
                               handleChange={handleChange}
-                            />
+                            /> */}
+                            <div className="row">
+                              <div className="col-12-sm col-12-md col-12-lg">
+                                <div className="d-flex">
+                                  <button
+                                    type="submit"
+                                    disabled={!dirty || isSubmitting}
+                                    className="btn btn--primary f-left card-button mr-3x"
+                                  >
+                                    {isSubmitting ? <Loading /> : !this.props.id ? 'Create' : 'Update'}
+                                  </button>
 
-                            <button
-                              type="submit"
-                              disabled={!dirty || isSubmitting}
-                              className="btn btn--primary f-left card-button mr-10"
-                            >
-                              {isSubmitting ? <Loading /> : !this.props.id ? 'Create' : 'Update'}
-                            </button>
-
-                            <button type="button" className="btn btn--danger mr-10 f-left" onClick={this.handleCancel}>
-                              Cancel
-                            </button>
+                                  <button
+                                    type="button"
+                                    className="btn btn--outlined-grey mr-10 f-left"
+                                    onClick={this.handleCancel}
+                                  >
+                                    Cancel
+                                  </button>
+                                </div>
+                              </div>
+                            </div>
                           </div>
                         </div>
                       </div>
