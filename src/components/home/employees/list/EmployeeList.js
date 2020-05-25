@@ -10,19 +10,13 @@ import { handleError } from 'utils/errorHandler';
 
 import * as employee from 'services/employee';
 
-import Alert from 'components/common/alert';
 import Table from 'components/common/table';
 import EmployeeFilter from 'components/home/employees/EmployeeFilter';
 
 // Custom Cell for Edit/Delete Functions
-const ActionCell = ({ title, value, handleFunc }) => {
+const ActionCell = ({ title, value, handleFunc = f => f }) => {
   return (
-    <button
-      style={{ margin: 4 }}
-      onClick={() => {
-        handleFunc(value);
-      }}
-    >
+    <button style={{ margin: 4 }} onClick={() => handleFunc(value)}>
       {title}
     </button>
   );
@@ -117,13 +111,8 @@ class EmployeeList extends Component {
       buttonText: 'Delete',
       preConfirm: async () => {
         try {
-          let resp = await employee.deleteById(id);
-          if (resp.status === 200) {
-            alert.info({
-              title: 'Deleted',
-            });
-            this.fetchEmployees();
-          }
+          await employee.deleteById(id);
+          this.fetchEmployees();
         } catch (err) {
           handleError(err);
         }

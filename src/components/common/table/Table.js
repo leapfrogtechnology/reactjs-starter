@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import { useTable, useFlexLayout } from 'react-table';
 
-const Table = ({ columns, data, handleUpdate, handleDelete }) => {
+const Table = ({ columns = [], data = [], handleUpdate = f => f, handleDelete = f => f }) => {
   const getStyles = (props, align = 'left') => [
     props,
     {
